@@ -1,0 +1,19 @@
+Package: MobileTrigger
+Type: Package
+Title: Run R Scripts from a Mobile Device
+Version: 0.1.1
+Author: Kenith Grey
+Maintainer: Kenith Grey <kenithgrey@r-bar.net>
+Description: Run R Models, Scripts, and Reports from a mobile device 
+    using E-mail Triggers
+License: GPL-3 | file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: 
+    knitr,
+    kableExtra,
+    ggplot2
+Depends: 
+    caret,
+    R (>= 3.0)
