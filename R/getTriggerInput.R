@@ -1,19 +1,24 @@
 #' @export
 MailTriggerInput <- function(InputPath){
 
-  if(is.null(InputPath)){return(warning("Specify Path to Model Input"))}
+  if(is.null(InputPath)){return(warning("Specify Input Path"))}
 
   MessageIn <- scan(file = InputPath, strip.white = T,
                     what="list", sep="\n", quiet = T)
 
-  ModelRow <- grep(pattern = "UseModel", x = MessageIn)
 
-  data <- read.csv2(text=MessageIn, header = T, skip = ModelRow, sep="," )
+  SelectOperationRow <- grep(pattern = "UseModel|UseScript|UseReport", x = MessageIn)
+
+  if(SelectOperationRow == length(MessageIn)){
+    data <- NULL
+  }else{
+    data <- read.csv2(text=MessageIn, header = T, skip = SelectOperationRow, sep="," )
+  }
 
   ID <- as.numeric(gsub(pattern = '\\D',
                         replacement = "" ,
-                        MessageIn[ModelRow]))
-  listout <- list(ModelID=ID, data=data)
+                        MessageIn[SelectOperationRow]))
+  listout <- list(ID=ID, data=data)
   class(listout) <- c("MailTriggerInput", "list")
   return(listout)
 }
