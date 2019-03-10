@@ -13,7 +13,8 @@ RoxygenNote: 6.1.1
 Imports: 
     knitr,
     kableExtra,
-    ggplot2
+    ggplot2,
+    XML
 Depends: 
     caret,
     R (>= 3.0)
