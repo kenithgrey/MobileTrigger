@@ -2,6 +2,7 @@
 
 export(GetModel)
 export(ListModels)
+export(ListReports)
 export(ListScripts)
 export(MailTriggerInput)
 export(SetupWindowsTrigger)

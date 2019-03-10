@@ -205,6 +205,97 @@ SetupWindowsTrigger <- function(path,
   writeLines(CMD, fileCon)
   close(fileCon)
 
+# Root: #R# List Reports --------------------------------------------------
+  fileCon <- file(paste0(path, "/ListReports.R"))
+  SETTINGS <- paste("require(mailR)",
+                    "require(MobileTrigger)",
+
+                    paste0("msg<-ListReports(path ='", path, "/Reports/')"),
+                    paste0("source(file = '", path, "/MailSettings.R', local = T)"),
+                    paste0("send.mail(from = Mail.From,
+                           to = Mail.To,
+                           subject = 'Report List',
+                           body = msg,
+                           smtp = list(host.name = SMTP.Server,
+                           port = SMTP.Port,
+                           user.name = SMTP.User,
+                           passwd = SMTP.Password,
+                           ssl = TRUE),
+                           authenticate = TRUE,
+                           send = TRUE,
+                           html = T)"),
+                    sep="\n"
+
+
+  )
+  writeLines(SETTINGS, fileCon)
+  close(fileCon)
+
+
+
+
+# Root: #R# RunReports.r --------------------------------------------------
+  fileCon <- file(paste0(path, "/RunReports.R"))
+  SETTINGS <- paste(
+  "require(mailR)",
+  "require(MobileTrigger)",
+  "# Setup -------------------------------------------------------------------",
+  paste0("Sys.setenv(RSTUDIO_PANDOC='", Sys.getenv("RSTUDIO_PANDOC") , "')"),
+  paste0("InputPath <- '", path, "/ReportInput.txt'"),
+  paste0("Attachment <- '", path, "/Reports/MobileTriggerReport.html'"),
+  paste0("source(file = '", path, "/MailSettings.R', local = T)"),
+  "",
+  "REPORT <- MailTriggerInput(InputPath=InputPath)",
+  "SelectedReport <-",
+  paste0("ListReports(path = '", path , "/Reports/',"),
+  "             SelectREPORT = REPORT$ID",
+  ")",
+
+  "ReportFile <-",
+  "  list.files(",
+  paste0("path ='", path, "/Reports/',"),
+  "   pattern = '.Rmd',
+      full.names = T)[REPORT$ID]
+
+  # Run Report --------------------------------------------------------------
+  tryCatch({
+    rmarkdown::render(input = ReportFile,
+                      output_file = Attachment)
+    err.msg <<- 'None'
+  },
+  error = function(e){err.msg <<- 'There were Errors. Report was not run'}
+  )
+
+
+
+  # Make Message Content ----------------------------------------------------
+  msg <- paste0('<h2>Selected Report</h2>',
+                SelectedReport,
+                '<h2>OutPut</h2>',
+                'Report File Attached if no Errors',
+                '<h2>Errors</h2>',
+                err.msg,
+                collapse = ''
+  )
+
+
+  # Send Message ------------------------------------------------------------
+  send.mail(from = Mail.From,
+            to = Mail.To,
+            subject = 'Requested Report',
+            body = msg,
+            smtp = list(host.name = SMTP.Server,
+                        port = SMTP.Port,
+                        user.name = SMTP.User,
+                        passwd = SMTP.Password,
+                        ssl = TRUE),
+            authenticate = TRUE,
+            attach.files = ifelse(!err.msg == 'None', NULL, Attachment),
+            send = TRUE,
+            html = T)",  sep="\n")
+
+writeLines(SETTINGS, fileCon)
+close(fileCon)
 
 # Build Outlook Script ----------------------------------------------------
   fileCon <- file(paste0(path, "/OUTLOOK.txt"))
@@ -236,7 +327,7 @@ SetupWindowsTrigger <- function(path,
   "End Sub",
   "Sub RunReports(trigger As Outlook.MailItem)",
   paste0("Folder = \"", OutLookPath, "\\\""),
-  "trigger.SaveAs Folder & \"ReportsInput.txt\", olTXT",
+  "trigger.SaveAs Folder & \"ReportInput.txt\", olTXT",
   paste0("Shell \"", OutLookPath ,"\\RunReports.bat\""),
   "End Sub",
   sep="\n"
