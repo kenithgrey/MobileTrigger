@@ -3,12 +3,11 @@ Notes:
 
 
 #todo
+
  # Clean Beta-Test
    # Outlook
    # Thunderbird
- # News.R (Done: Skipping New Package...)
- # Readme.md - for github (done for now... will need to update links)
- # Travis (done)
+
  # Windows Checks
  # Spelling
  # Submit
@@ -53,3 +52,8 @@ Notes:
  # Note Add XML import (done)
  # Make the second script for new york office. (done)
 
+#Completed Todos
+ # Fillout Lisense and Add Copywrite to the top of each function.(done)
+ # News.R (Done: Skipping New Package...)
+ # Readme.md - for github (done for now... will need to update links)
+ # Travis (done)
