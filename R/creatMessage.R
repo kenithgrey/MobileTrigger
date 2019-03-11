@@ -16,7 +16,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with ggQC.  If not, see <http://www.gnu.org/licenses/>.
+# along with MobileTrigger.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
@@ -63,6 +63,7 @@
 #'
 
 creatMessage <- function(ID, path, outputData){
+  if(ID == 0){return("No InputFile In Path")}
   CSS_Table <- "style='border: 1px solid black; width: 75%;'"
   CSS_Cells <- "text-align:center; color: black; padding: 5px; border: 1px solid black;"
 

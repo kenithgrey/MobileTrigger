@@ -5,7 +5,9 @@ Notes:
 #todo
 
  # Clean Beta-Test
-   # Outlook
+   # Outlook (everything works)
+      - Approximate Process --> Run Trigger --> Run the Starter Messages --> Get Outlook.txt --> Copy VBA to Outlook --> update trust center to allow macros --> Restart Outlook --> Setup list --> Check for the only on local machine issue. --> test with e-mail to self. If the process works connect the remaining 5 rules with there VBA script via Rules.
+
    # Thunderbird
 
  # Windows Checks

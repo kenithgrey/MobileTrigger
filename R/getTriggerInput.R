@@ -16,7 +16,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with ggQC.  If not, see <http://www.gnu.org/licenses/>.
+# along with MobileTrigger.  If not, see <http://www.gnu.org/licenses/>.
 
 #' @export
 #' @title Get Input From a Mail Trigger Message
@@ -46,6 +46,8 @@
 MailTriggerInput <- function(InputPath){
 
   if(is.null(InputPath)){return(warning("Specify Input Path"))}
+  if(!file.exists(InputPath)){return(list(ID=0, data="No Input File In Path"))}
+
 
   MessageIn <- scan(file = InputPath, strip.white = T,
                     what="list", sep="\n", quiet = T)

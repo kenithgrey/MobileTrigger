@@ -16,7 +16,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with ggQC.  If not, see <http://www.gnu.org/licenses/>.
+# along with MobileTrigger.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #' @export
@@ -217,7 +217,30 @@ SetupWindowsTrigger <- function(path,
                     paste0("SCRIPT <- MailTriggerInput(InputPath=InputPath)"),
                     paste0("ScriptFile <- list.files((path ='", path, "/Scripts/')",
                            ", pattern = '.R', full.names = T)[SCRIPT$ID]"),
-                    paste0("source(file = ScriptFile, local = T)"),
+
+                    "tryCatch(
+                      source(file = ScriptFile, local = T),
+                      error=function(e){",
+                    paste0("source(file = '", path, "/MailSettings.R', local = T)"),
+                       "send.mail(from = Mail.From,
+                                  to = Mail.To,
+                                  subject = 'Run Script Error',
+                                  body = '<h2>Error Occured:</h2>
+                      <ol>
+                      <li>Your Script had an error</li>
+                      <li>No such Script ID</li>
+                      <li>or no Scipt input file</li>
+                      </ol>',
+                                  smtp = list(host.name = SMTP.Server,
+                                              port = SMTP.Port,
+                                              user.name = SMTP.User,
+                                              passwd = SMTP.Password,
+                                              ssl = TRUE),
+                                  authenticate = TRUE,
+                                  send = TRUE,
+                                  html = T)
+
+                      })",
                     sep="\n"
   )
   writeLines(SETTINGS, fileCon)
@@ -339,7 +362,10 @@ SetupWindowsTrigger <- function(path,
                         passwd = SMTP.Password,
                         ssl = TRUE),
             authenticate = TRUE,
-            attach.files = ifelse(!err.msg == 'None', NULL, Attachment),
+            attach.files =  tryCatch(
+                             if(err.msg == 'None') Attachment else {NULL},
+                             error= function(e){NULL}
+                             ),
             send = TRUE,
             html = T)",  sep="\n")
 
