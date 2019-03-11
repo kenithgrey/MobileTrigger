@@ -395,7 +395,7 @@ close(fileCon)
   "#Helper Script to Setup E-mail triggers and mail client
   require(mailR)
 
-  Subjects <- paste('Hey R - ',
+  Subjects <- paste('Hey R -',
                     rep(c('Run', 'List'),3),
                     rep(c('Models', 'Scripts', 'Reports'),each=2)
   )
