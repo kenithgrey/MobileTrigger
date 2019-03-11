@@ -3,3 +3,4 @@
 ^\.Rproj\.user$
 \TestEnv
 \Notes
+^\.travis\.yml$
