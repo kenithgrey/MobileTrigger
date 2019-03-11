@@ -18,7 +18,7 @@
 #' #################################
 #' # Setting of MobileTriggers     #
 #' #################################
-#' SetupWindowsTrigger(path="c:/triggers3",
+#' SetupWindowsTrigger(path="c:/triggers",
 #'                     Mail.To = "Your.Email@mobile.com",
 #'                     Mail.From = "R.Triggers@desktop.com",
 #'                     SMTP.Server = "smtp.server.com",

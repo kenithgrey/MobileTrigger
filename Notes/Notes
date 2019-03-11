@@ -1,9 +1,26 @@
 Notes:
 * In thunderbird filtaqulla does not have a default rule for saving a message to file. In order to make this work you will ned to go into the add-on options, and turn that capability on. When you are done you will need to restart thunderbird to see the effect.
 
-# Make the RunScripts.R file (done)
-# Note Add XML import (done)
-# Make the second script for newyork office. (done)
+
+#todo
+ # Clean Beta-Test
+   # Outlook
+   # Thunderbird
+ # News.R
+ # Readme.md - for github
+ # Travis
+ # Windows Checks
+ # Spelling
+ # Submit
+ # Make Articles
+    # Installation and Setup
+    # Models
+    # Scripts
+    # Reports
+
+#Furture Features
+ #update R version in batch files
+
 
 # Setup the Windows setup script
   # RunScripts.bat (done)
@@ -30,7 +47,9 @@ Notes:
     'creatMessage'(done)
 
 
-#Feature
- #Send starter messages for Making Rules
- #update R version in batch files
+#Complete Features
+ #Send starter messages for Making Rules (done)
+ # Make the RunScripts.R file (done)
+ # Note Add XML import (done)
+ # Make the second script for new york office. (done)
 
