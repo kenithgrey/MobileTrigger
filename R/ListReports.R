@@ -1,4 +1,33 @@
+##########################
+# Get Reports            #
+##########################
+
 #' @export
+#' @title List Available Reports
+#' @description Creates an HTML table for all or selected reports in the
+#' [TRIGGER_PATH]/Reports/ folder. This table is used as part of a message
+#' being sent out to a receiving  e-mail client.
+#' @param path string, path to the /Reports/ folder.
+#' @param SelectREPORT integer, Report ID value determined from
+#' MobileTrigger::ListReports() output when SelectREPORT = NULL
+#' @return If SelectREPORT = NULL: An HTML table of all scripts in the /Reports/
+#' folder. If SelectREPORT is a Report ID number from the complete report list it
+#' only returns and HTML table with the selected report.
+#' @examples
+#'
+#' ################################
+#' # Get all the Available Reports #
+#' ################################
+#' # REPORTPATH <- "C:/Triggers/Reports/"
+#' # HTML.Message <- ListReports(path = REPORTPATH)
+#' ## Use the HTML.Message to send table of Reports with MailR package.
+#'
+#' #############################
+#' # Get Selected  Reports     #
+#' #############################
+#' # HTML.Message <- ListReports(path = REPORTPATH, SelectREPORT = 1)
+#' ## Use the HTML.Message to send table of Selected Script with MailR package.
+#'
 ListReports <- function(path=NULL, SelectREPORT=NULL){
   ###Testing Area###
   #path <- "TestEnv/Reports/"

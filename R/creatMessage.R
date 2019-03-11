@@ -1,4 +1,45 @@
 #' @export
+#' @title HTML Summary of Model Result
+#' @description Function takes i) a seleted model from the TRIGGER_PATH]/Models/ folder
+#' and the results and makes an HTML summary for the e-mail message response.
+#' @param ID integer, Model ID value determined from MobileTrigger::ListModels() output
+#' when SelectMDL = NULL
+#' @param path string, path to the /Models/ folder.
+#' @param outputData data.frame, table with model, inputs, and outputs.
+#' @return A HTML summary for e-mail message response.
+#' @examples
+#'
+#' ################################
+#' # creatMessage Example         #
+#' ################################
+#'
+#' # MDLpath <- 'c:/triggers/Models/'
+#' # InputPath <- 'c:/triggers/modelInput.txt'
+#'
+#' # Read Data and Model -----------------------------------------------------
+#' # Input <- MailTriggerInput(InputPath=InputPath)
+#'
+#' # Load Selected Model -----------------------------------------------------
+#' # MDL <- GetModel(ID = Input$ID, path = MDLpath)
+#' # Predict -----------------------------------------------------------------
+#' # if(MDL == 'No Models in Path'){
+#' # }else if(!is.null(MDL[[1]]$scaled)){
+#' #  if(MDL[[1]]$scaled == T){
+#' #    Input$data$Prediction <-
+#' #    unlist(predict(MDL[[1]], Input$data)) * MDL[[1]]$outRange + MDL[[1]]$outMin}
+#' #   }else{
+#' #    Input$data$Prediction <- unlist(predict(MDL[1], Input$data))
+#' # }
+#'
+#' # Build Message -----------------------------------------------------------
+#' # msg <- creatMessage(ID = Input$ID,
+#' #                     path = MDLpath,
+#' #                     outputData = Input$data)
+
+#'  # Send Message ------------------------------------------------------------
+#' ## ...
+#'
+
 creatMessage <- function(ID, path, outputData){
   CSS_Table <- "style='border: 1px solid black; width: 75%;'"
   CSS_Cells <- "text-align:center; color: black; padding: 5px; border: 1px solid black;"

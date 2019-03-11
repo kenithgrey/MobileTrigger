@@ -19,6 +19,15 @@ Notes:
   # RunReports.R (done)
   # OUTLOOK.txt (done)
 
+#Documentation
+
+    'GetModel'    (done)
+    'ListModels' (done)
+    'ListReports' (done)
+    'ListScripts' (done)
+    'MailTriggerInput' (done)
+    'SetupWindowsTrigger'
+    'creatMessage'(done)
 
 
 #Feature

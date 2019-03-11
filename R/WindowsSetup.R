@@ -1,4 +1,32 @@
 #' @export
+#' @title Setup MobileTrigger Folder Structure and Files
+#' @description The heart of the MobileTrigger package. You specify where you
+#' want your tigger folder and some e-mail information and this function.
+#' This function builds all the scripts you need to get started. At this time,
+#' the function works for windows users.
+#' @param path string, top level folder called the [TriggerPath]
+#' @param SMTP.Server string, SMTP server for your e-mail account
+#' @param SMTP.Port integer, port number
+#' @param SMTP.User string, user name
+#' @param SMTP.Password string, password
+#' @param Mail.To string, e-mail address you want MobileTriggers to respond to
+#' @param Mail.From string, e-mail address you want MobileTriggers to use to send.
+#' @return Sets up a folder and file structure at the [TriggerPath].
+#'
+#' @examples
+#'
+#' #################################
+#' # Setting of MobileTriggers     #
+#' #################################
+#' SetupWindowsTrigger(path="c:/triggers3",
+#'                     Mail.To = "Your.Email@mobile.com",
+#'                     Mail.From = "R.Triggers@desktop.com",
+#'                     SMTP.Server = "smtp.server.com",
+#'                     SMTP.Port = 123,
+#'                     SMTP.User = "R.Triggers@desktop.com",
+#'                     SMTP.Password = "1234Password"
+#' )
+
 # Setup Windows Triggers Folder ---------------------------------------------------
 SetupWindowsTrigger <- function(path,
                                 SMTP.Server,
@@ -8,13 +36,13 @@ SetupWindowsTrigger <- function(path,
                                 Mail.To,
                                 Mail.From){
 
-# Creat Root --------------------------------------------------------------
+# Create Root --------------------------------------------------------------
   dir.create(path)
 
 
 
 
-# Root: Creat MailSetting.R -----------------------------------------------
+# Root: Create MailSetting.R -----------------------------------------------
   fileCon <- file(paste0(path, "/MailSettings.R"))
   SETTINGS <- paste(paste0("SMTP.Server <- '", SMTP.Server, "'"),
                     paste0("SMTP.Port <- '", SMTP.Port, "'"),
@@ -27,13 +55,13 @@ SetupWindowsTrigger <- function(path,
   writeLines(SETTINGS, fileCon)
   close(fileCon)
 
-# Root: Creat Models Folder -----------------------------------------------
+# Root: Create Models Folder -----------------------------------------------
   ModelPath <- paste0(path, "/", "Models")
   dir.create(ModelPath) #Make The Folder
 
 
 
-# Root: #R# Creat ListModels.R -----------------------------------------------
+# Root: #R# Create ListModels.R -----------------------------------------------
   fileCon <- file(paste0(path, "/ListModels.R"))
   SETTINGS <- paste("require(mailR)",
                     "require(MobileTrigger)",
@@ -59,7 +87,7 @@ SetupWindowsTrigger <- function(path,
   writeLines(SETTINGS, fileCon)
   close(fileCon)
 
-# Root: #R# Creat RunModels.R -----------------------------------------------
+# Root: #R# Create RunModels.R -----------------------------------------------
   fileCon <- file(paste0(path, "/RunModels.R"))
   SETTINGS <- paste(
           "require(mailR)",
@@ -113,13 +141,13 @@ SetupWindowsTrigger <- function(path,
 
 
 
-# Root: #B# Creat ListModels.bat ----------------------------------------------
+# Root: #B# Create ListModels.bat ----------------------------------------------
   fileCon <- file(paste0(path, "/ListModels.bat"))
   CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/ListModels.R")
   writeLines(CMD, fileCon)
   close(fileCon)
 
-# Root: #B# Creat RunModels.Bat -----------------------------------------------------
+# Root: #B# Create RunModels.Bat -----------------------------------------------------
   fileCon <- file(paste0(path, "/RunModels.bat"))
   CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/RunModels.R")
   writeLines(CMD, fileCon)
@@ -131,7 +159,7 @@ SetupWindowsTrigger <- function(path,
   dir.create(ScriptPath) #Make The Folder
 
 
-# Root: #R# Creat ListScripts.r -----------------------------------------------
+# Root: #R# Create ListScripts.r -----------------------------------------------
   fileCon <- file(paste0(path, "/ListScripts.R"))
   SETTINGS <- paste("require(mailR)",
                     "require(MobileTrigger)",
@@ -159,7 +187,7 @@ SetupWindowsTrigger <- function(path,
 
 
 
-# Root: #R# Creat RunScripts.r ------------------------------------------------
+# Root: #R# Create RunScripts.r ------------------------------------------------
   fileCon <- file(paste0(path, "/RunScripts.R"))
   SETTINGS <- paste("require(mailR)",
                     "require(MobileTrigger)",
@@ -175,13 +203,13 @@ SetupWindowsTrigger <- function(path,
   close(fileCon)
 
 
-# Root: #B# Creat ListScripts.bat ---------------------------------------------
+# Root: #B# Create ListScripts.bat ---------------------------------------------
   fileCon <- file(paste0(path, "/ListScripts.bat"))
   CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/ListScripts.R")
   writeLines(CMD, fileCon)
   close(fileCon)
 
-# Root: #B# Creat RunScripts.bat ---------------------------------------------
+# Root: #B# Create RunScripts.bat ---------------------------------------------
   fileCon <- file(paste0(path, "/RunScripts.bat"))
   CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/RunScripts.R")
   writeLines(CMD, fileCon)
@@ -192,14 +220,14 @@ SetupWindowsTrigger <- function(path,
   ReportPath <- paste0(path, "/", "Reports")
   dir.create(ReportPath) #Make The Folder
 
-# Root: #B# Creat ListReports.bat ---------------------------------------------
+# Root: #B# Create ListReports.bat ---------------------------------------------
   fileCon <- file(paste0(path, "/ListReports.bat"))
   CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/ListReports.R")
   writeLines(CMD, fileCon)
   close(fileCon)
 
 
-# Root: #B# Creat RunReports.bat ----------------------------------------------
+# Root: #B# Create RunReports.bat ----------------------------------------------
   fileCon <- file(paste0(path, "/RunReports.bat"))
   CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/RunReports.R")
   writeLines(CMD, fileCon)
@@ -336,5 +364,41 @@ close(fileCon)
   close(fileCon)
 
 
-}
 
+
+# Root: #R# Create StarterMessages ---------------------------------------------------
+
+  fileCon <- file(paste0(path, "/StarterMessages.R"))
+  SETTINGS <- paste(
+  paste0("source(file = '", path, "/MailSettings.R', local = T)"),
+  "#Helper Script to Setup E-mail triggers and mail client
+  require(mailR)
+
+  Subjects <- paste('Hey R - ',
+                    rep(c('Run', 'List'),3),
+                    rep(c('Models', 'Scripts', 'Reports'),each=2)
+  )
+
+  lapply(Subjects, function(x){
+    send.mail(from = Mail.From,
+              to = Mail.To,
+              subject = x,
+              body = 'MobileTrigger Starter Messages',
+              smtp = list(host.name = SMTP.Server,
+                          port = SMTP.Port,
+                          user.name = SMTP.User,
+                          passwd = SMTP.Password,
+                          ssl = TRUE),
+              authenticate = TRUE,
+              send = TRUE,
+              html = T)
+  })", sep="\n")
+  writeLines(SETTINGS, fileCon)
+  close(fileCon)
+
+# Root: #B# Create starterMessages.bat -----------------------------------------------------
+fileCon <- file(paste0(path, "/starterMessages.bat"))
+CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/StarterMessages.R")
+writeLines(CMD, fileCon)
+close(fileCon)
+}
