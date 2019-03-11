@@ -39,14 +39,14 @@
 #' #################################
 #' # Setting of MobileTriggers     #
 #' #################################
-#' SetupWindowsTrigger(path="c:/triggers",
-#'                     Mail.To = "Your.Email@mobile.com",
-#'                     Mail.From = "R.Triggers@desktop.com",
-#'                     SMTP.Server = "smtp.server.com",
-#'                     SMTP.Port = 123,
-#'                     SMTP.User = "R.Triggers@desktop.com",
-#'                     SMTP.Password = "1234Password"
-#' )
+#' # SetupWindowsTrigger(path="c:/triggers",
+#' #                     Mail.To = "Your.Email@mobile.com",
+#' #                     Mail.From = "R.Triggers@desktop.com",
+#' #                     SMTP.Server = "smtp.server.com",
+#' #                     SMTP.Port = 123,
+#' #                     SMTP.User = "R.Triggers@desktop.com",
+#' #                     SMTP.Password = "1234Password"
+#' # )
 
 # Setup Windows Triggers Folder ---------------------------------------------------
 SetupWindowsTrigger <- function(path,
