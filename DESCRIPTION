@@ -5,7 +5,7 @@ Version: 0.0.13
 Author: Kenith Grey
 Maintainer: Kenith Grey <kenithgrey@r-bar.net>
 Description: Run R Models, Scripts, and Reports from a mobile device 
-    using E-mail Triggers
+    using E-mail Triggers.
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -15,7 +15,9 @@ Imports:
     kableExtra,
     ggplot2,
     XML,
-    plyr
+    plyr,
+    utils,
+    yaml
 Depends: 
-    caret,
-    R (>= 3.0)
+    R (>= 3.0),
+    caret
