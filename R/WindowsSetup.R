@@ -59,7 +59,7 @@ SetupWindowsTrigger <- function(path,
 
 # Create Root --------------------------------------------------------------
   dir.create(path)
-
+ winpath = gsub("/", "\\\\", path)
 
 
 
@@ -170,7 +170,14 @@ SetupWindowsTrigger <- function(path,
 
 # Root: #B# Create RunModels.Bat -----------------------------------------------------
   fileCon <- file(paste0(path, "/RunModels.bat"))
-  CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/RunModels.R")
+  CMD <-
+    paste(
+    "REM | Takes care of ThunderBird & FiltaQuilla process Flow",
+    paste0("IF exist ", winpath, "\\hey-r---run-models.eml ("),
+    paste0("move /Y ", winpath, "\\hey-r---run-models.eml ModelInput.txt)"),
+    "REM | Started Headless R",
+    paste0(R.home("bin"), "/" , "Rscript.exe ", winpath, "\\RunModels.R"),
+    sep="\n")
   writeLines(CMD, fileCon)
   close(fileCon)
 
@@ -255,7 +262,15 @@ SetupWindowsTrigger <- function(path,
 
 # Root: #B# Create RunScripts.bat ---------------------------------------------
   fileCon <- file(paste0(path, "/RunScripts.bat"))
-  CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/RunScripts.R")
+  CMD <-
+    paste(
+      "REM | Takes care of ThunderBird & FiltaQuilla process Flow",
+      paste0("IF exist ", winpath, "\\hey-r---run-scripts.eml ("),
+      paste0("move /Y ", winpath, "\\hey-r---run-scripts.eml ScriptInput.txt)"),
+      "REM | Started Headless R",
+      paste0(R.home("bin"), "/" , "Rscript.exe ", winpath, "\\RunScripts.R"),
+      sep="\n")
+
   writeLines(CMD, fileCon)
   close(fileCon)
 
@@ -273,7 +288,14 @@ SetupWindowsTrigger <- function(path,
 
 # Root: #B# Create RunReports.bat ----------------------------------------------
   fileCon <- file(paste0(path, "/RunReports.bat"))
-  CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/RunReports.R")
+  CMD <-
+    paste(
+      "REM | Takes care of ThunderBird & FiltaQuilla process Flow",
+      paste0("IF exist ", winpath, "\\hey-r---run-reports.eml ("),
+      paste0("move /Y ", winpath, "\\hey-r---run-reports.eml ReportInput.txt)"),
+      "REM | Started Headless R",
+      paste0(R.home("bin"), "\\" , "Rscript.exe ", winpath, "\\RunReports.R"),
+      sep="\n")
   writeLines(CMD, fileCon)
   close(fileCon)
 
@@ -448,4 +470,20 @@ fileCon <- file(paste0(path, "/starterMessages.bat"))
 CMD <- paste0(R.home("bin"), "/" , "Rscript.exe ", path, "/StarterMessages.R")
 writeLines(CMD, fileCon)
 close(fileCon)
+
+# Root: Create Empty InputFiles -------------------------------------------
+  fileCon <- file(paste0(path, "/ModelInput.txt"))
+  CMD <- ""
+  writeLines(CMD, fileCon)
+  close(fileCon)
+
+  fileCon <- file(paste0(path, "/ScriptInput.txt"))
+  CMD <- ""
+  writeLines(CMD, fileCon)
+  close(fileCon)
+
+  fileCon <- file(paste0(path, "/ReportInput.txt"))
+  CMD <- ""
+  writeLines(CMD, fileCon)
+  close(fileCon)
 }

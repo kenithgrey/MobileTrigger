@@ -1,6 +1,12 @@
 Notes:
 * In thunderbird filtaqulla does not have a default rule for saving a message to file. In order to make this work you will ned to go into the add-on options, and turn that capability on. When you are done you will need to restart thunderbird to see the effect.
 
+*thunderbird Path to filtaquilla filters:
+C:\Users\billy\AppData\Roaming\Thunderbird\Profiles\wrvfw5me.default\ImapMail\imap.ionos.com\msgFilterRules.dat
+
+
+#irritations:
+ # when you move the example script files around you have to change the root trigger folder manually.
 
 #todo
 
