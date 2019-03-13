@@ -177,6 +177,8 @@ SetupWindowsTrigger <- function(path,
     paste0("move /Y ", winpath, "\\hey-r---run-models.eml ModelInput.txt)"),
     "REM | Started Headless R",
     paste0(R.home("bin"), "/" , "Rscript.exe ", winpath, "\\RunModels.R"),
+    "REM | Clean Up residual E-mail messages from Thunderbird",
+    "del *.eml",
     sep="\n")
   writeLines(CMD, fileCon)
   close(fileCon)
@@ -269,6 +271,8 @@ SetupWindowsTrigger <- function(path,
       paste0("move /Y ", winpath, "\\hey-r---run-scripts.eml ScriptInput.txt)"),
       "REM | Started Headless R",
       paste0(R.home("bin"), "/" , "Rscript.exe ", winpath, "\\RunScripts.R"),
+      "REM | Clean Up residual E-mail messages from Thunderbird",
+      "del *.eml",
       sep="\n")
 
   writeLines(CMD, fileCon)
@@ -295,6 +299,8 @@ SetupWindowsTrigger <- function(path,
       paste0("move /Y ", winpath, "\\hey-r---run-reports.eml ReportInput.txt)"),
       "REM | Started Headless R",
       paste0(R.home("bin"), "\\" , "Rscript.exe ", winpath, "\\RunReports.R"),
+      "REM | Clean Up residual E-mail messages from Thunderbird",
+      "del *.eml",
       sep="\n")
   writeLines(CMD, fileCon)
   close(fileCon)
