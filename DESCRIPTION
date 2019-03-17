@@ -1,7 +1,7 @@
 Package: MobileTrigger
 Type: Package
 Title: Run R Scripts from a Mobile Device
-Version: 0.0.13
+Version: 0.0.1
 Author: Kenith Grey
 Maintainer: Kenith Grey <kenithgrey@r-bar.net>
 Description: Run R Models, Scripts, and Reports from a mobile device 

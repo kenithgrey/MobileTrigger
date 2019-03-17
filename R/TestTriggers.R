@@ -50,6 +50,13 @@ testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mai
     return(warning("Arguments: path, Mail.From, and Mail.To must be provided"))
   }
 
+  #initial Settings
+  SMTP.Server <- character()
+  SMTP.Port <- numeric()
+  SMTP.User <- character()
+  SMTP.Password <- character()
+
+
 
 
   source(paste0(path,"/MailSettings.R"), local = T)
@@ -82,7 +89,7 @@ testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mai
   lapply(selected, function(x){
     print(Mail.df$Subjects[x])
     print(Mail.df$Messages[x])
-    send.mail(from = MF,
+    mailR::send.mail(from = MF,
               to = MT,
               subject = Mail.df$Subjects[x],
               body = Mail.df$Messages[x],
