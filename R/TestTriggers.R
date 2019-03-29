@@ -50,11 +50,9 @@ testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mai
     return(warning("Arguments: path, Mail.From, and Mail.To must be provided"))
   }
 
-  #initial Settings
-  # SMTP.Server <- character()
-  # SMTP.Port <- numeric()
-  # SMTP.User <- character()
-  # SMTP.Password <- character()
+  #initialize variables (R package Checks)
+  MailRsettings <- character()
+
 
 
 

@@ -9,17 +9,13 @@ SetupWindowsTrigger(path, SMTP.Settings, Mail.To, Mail.From)
 \arguments{
 \item{path}{string, top level folder called the [TriggerPath]}
 
+\item{SMTP.Settings}{list, list of smtp.setting to send to mailR::mail.send.
+See examples below for outlook and other styles of smtp setting
+might be specified}
+
 \item{Mail.To}{string, e-mail address you want MobileTriggers to respond to}
 
 \item{Mail.From}{string, e-mail address you want MobileTriggers to use to send.}
-
-\item{SMTP.Server}{string, SMTP server for your e-mail account}
-
-\item{SMTP.Port}{integer, port number}
-
-\item{SMTP.User}{string, user name}
-
-\item{SMTP.Password}{string, password}
 }
 \value{
 Sets up a folder and file structure at the [TriggerPath].
@@ -34,14 +30,27 @@ the function works for windows users.
 
 #################################
 # Setting of MobileTriggers     #
-#################################
+
+
+## OUTLOOK Style (uses tls = TRUE argument) ###
 # SetupWindowsTrigger(path="c:/triggers",
 #                     Mail.To = "Your.Email@mobile.com",
-#                     Mail.From = "R.Triggers@desktop.com",
+#                     Mail.From = "someuser@outlook.com",
 #                     SMTP.Settings=list(
 #                         host.name = 'smtp.office365.com',
 #                         port = 587,
 #                         user.name = 'someuser@outlook.com',
 #                         passwd = 'password', tls = TRUE)
+# )
+
+## Other STYLE (uses ssl = TRUE argument) ###
+# SetupWindowsTrigger(path="c:/triggers",
+#                     Mail.To = "Your.Email@mobile.com",
+#                     Mail.From = "R.Triggers@desktop.com",
+#                     SMTP.Settings=list(
+#                         host.name = 'some.smtp.sever.com',
+#                         port = 587,
+#                         user.name = 'R.Triggers@desktop.com',
+#                         passwd = 'password', ssl = TRUE)
 # )
 }

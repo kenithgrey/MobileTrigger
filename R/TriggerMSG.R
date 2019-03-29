@@ -27,6 +27,8 @@
 #' @param subject string, subject text of the message
 #' @param html boolean, use HTML or plain text.
 #' @param authenticate boolean, use authentication for SMTP signin
+#' @param debug boolean, option to turn on mailR debuging
+#' @param ... addtional options to pass through to mailR::send.mail()
 #' @return message to be sent to mobile email client.
 #'
 #' @examples
@@ -47,6 +49,11 @@
 TriggerMSG <-
   function(path, subject = NULL, body = NULL, html = F,
            authenticate = T, debug = F, ...){
+
+    #Initialize variables for R package checks
+    MailRsettings <- character()
+    Mail.From <- character()
+    Mail.To <- character()
 
     source(paste0(path, "/mailSettings.R", collapse = ""), local = T)
     #print(ls())

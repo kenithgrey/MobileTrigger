@@ -26,10 +26,9 @@
 #' This function builds all the scripts you need to get started. At this time,
 #' the function works for windows users.
 #' @param path string, top level folder called the [TriggerPath]
-#' @param SMTP.Server string, SMTP server for your e-mail account
-#' @param SMTP.Port integer, port number
-#' @param SMTP.User string, user name
-#' @param SMTP.Password string, password
+#' @param SMTP.Settings list, list of smtp.setting to send to mailR::mail.send.
+#' See examples below for outlook and other styles of smtp setting
+#' might be specified
 #' @param Mail.To string, e-mail address you want MobileTriggers to respond to
 #' @param Mail.From string, e-mail address you want MobileTriggers to use to send.
 #' @return Sets up a folder and file structure at the [TriggerPath].
@@ -38,16 +37,30 @@
 #'
 #' #################################
 #' # Setting of MobileTriggers     #
-#' #################################
+#'
+#'
+#' ## OUTLOOK Style (uses tls = TRUE argument) ###
 #' # SetupWindowsTrigger(path="c:/triggers",
 #' #                     Mail.To = "Your.Email@mobile.com",
-#' #                     Mail.From = "R.Triggers@desktop.com",
+#' #                     Mail.From = "someuser@outlook.com",
 #' #                     SMTP.Settings=list(
 #' #                         host.name = 'smtp.office365.com',
 #' #                         port = 587,
 #' #                         user.name = 'someuser@outlook.com',
 #' #                         passwd = 'password', tls = TRUE)
 #' # )
+#'
+#' ## Other STYLE (uses ssl = TRUE argument) ###
+#' # SetupWindowsTrigger(path="c:/triggers",
+#' #                     Mail.To = "Your.Email@mobile.com",
+#' #                     Mail.From = "R.Triggers@desktop.com",
+#' #                     SMTP.Settings=list(
+#' #                         host.name = 'some.smtp.sever.com',
+#' #                         port = 587,
+#' #                         user.name = 'R.Triggers@desktop.com',
+#' #                         passwd = 'password', ssl = TRUE)
+#' # )
+
 
 # Setup Windows Triggers Folder ---------------------------------------------------
 SetupWindowsTrigger <- function(path,

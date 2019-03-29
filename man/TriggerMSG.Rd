@@ -17,6 +17,10 @@ TriggerMSG(path, subject = NULL, body = NULL, html = F,
 \item{html}{boolean, use HTML or plain text.}
 
 \item{authenticate}{boolean, use authentication for SMTP signin}
+
+\item{debug}{boolean, option to turn on mailR debuging}
+
+\item{...}{addtional options to pass through to mailR::send.mail()}
 }
 \value{
 message to be sent to mobile email client.
