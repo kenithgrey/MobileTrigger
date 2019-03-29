@@ -51,10 +51,10 @@ testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mai
   }
 
   #initial Settings
-  SMTP.Server <- character()
-  SMTP.Port <- numeric()
-  SMTP.User <- character()
-  SMTP.Password <- character()
+  # SMTP.Server <- character()
+  # SMTP.Port <- numeric()
+  # SMTP.User <- character()
+  # SMTP.Password <- character()
 
 
 
@@ -93,11 +93,7 @@ testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mai
               to = MT,
               subject = Mail.df$Subjects[x],
               body = Mail.df$Messages[x],
-              smtp = list(host.name = SMTP.Server,
-                          port = SMTP.Port,
-                          user.name = SMTP.User,
-                          passwd = SMTP.Password,
-                          ssl = TRUE),
+              smtp = MailRsettings,
               authenticate = TRUE,
               send = TRUE,
               html = F)

@@ -4,11 +4,14 @@
 \alias{SetupWindowsTrigger}
 \title{Setup MobileTrigger Folder Structure and Files}
 \usage{
-SetupWindowsTrigger(path, SMTP.Server, SMTP.Port, SMTP.User, SMTP.Password,
-  Mail.To, Mail.From)
+SetupWindowsTrigger(path, SMTP.Settings, Mail.To, Mail.From)
 }
 \arguments{
 \item{path}{string, top level folder called the [TriggerPath]}
+
+\item{Mail.To}{string, e-mail address you want MobileTriggers to respond to}
+
+\item{Mail.From}{string, e-mail address you want MobileTriggers to use to send.}
 
 \item{SMTP.Server}{string, SMTP server for your e-mail account}
 
@@ -17,10 +20,6 @@ SetupWindowsTrigger(path, SMTP.Server, SMTP.Port, SMTP.User, SMTP.Password,
 \item{SMTP.User}{string, user name}
 
 \item{SMTP.Password}{string, password}
-
-\item{Mail.To}{string, e-mail address you want MobileTriggers to respond to}
-
-\item{Mail.From}{string, e-mail address you want MobileTriggers to use to send.}
 }
 \value{
 Sets up a folder and file structure at the [TriggerPath].
@@ -39,9 +38,10 @@ the function works for windows users.
 # SetupWindowsTrigger(path="c:/triggers",
 #                     Mail.To = "Your.Email@mobile.com",
 #                     Mail.From = "R.Triggers@desktop.com",
-#                     SMTP.Server = "smtp.server.com",
-#                     SMTP.Port = 123,
-#                     SMTP.User = "R.Triggers@desktop.com",
-#                     SMTP.Password = "1234Password"
+#                     SMTP.Settings=list(
+#                         host.name = 'smtp.office365.com',
+#                         port = 587,
+#                         user.name = 'someuser@outlook.com',
+#                         passwd = 'password', tls = TRUE)
 # )
 }

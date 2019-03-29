@@ -42,37 +42,41 @@
 #' # SetupWindowsTrigger(path="c:/triggers",
 #' #                     Mail.To = "Your.Email@mobile.com",
 #' #                     Mail.From = "R.Triggers@desktop.com",
-#' #                     SMTP.Server = "smtp.server.com",
-#' #                     SMTP.Port = 123,
-#' #                     SMTP.User = "R.Triggers@desktop.com",
-#' #                     SMTP.Password = "1234Password"
+#' #                     SMTP.Settings=list(
+#' #                         host.name = 'smtp.office365.com',
+#' #                         port = 587,
+#' #                         user.name = 'someuser@outlook.com',
+#' #                         passwd = 'password', tls = TRUE)
 #' # )
 
 # Setup Windows Triggers Folder ---------------------------------------------------
 SetupWindowsTrigger <- function(path,
-                                SMTP.Server,
-                                SMTP.Port,
-                                SMTP.User,
-                                SMTP.Password,
+                                SMTP.Settings,
                                 Mail.To,
                                 Mail.From){
 
 # Create Root --------------------------------------------------------------
   dir.create(path)
- winpath = gsub("/", "\\\\", path)
+  winpath = gsub("/", "\\\\", path)
 
 
 
 # Root: Create MailSetting.R -----------------------------------------------
   fileCon <- file(paste0(path, "/MailSettings.R"))
-  SETTINGS <- paste(paste0("SMTP.Server <- '", SMTP.Server, "'"),
-                    paste0("SMTP.Port <- '", SMTP.Port, "'"),
-                    paste0("SMTP.User <- '", SMTP.User, "'"),
-                    paste0("SMTP.Password <- '", SMTP.Password, "'"),
-                    paste0("Mail.To <- '", Mail.To, "'"),
-                    paste0("Mail.From <- '", Mail.From, "'"),
-                    sep = "\n"
-                    )
+  if(class(SMTP.Settings) == "list")
+  {
+    SETTINGS <- paste(paste0("MailRsettings <-", paste0(deparse(SMTP.Settings), collapse = "")),
+                      paste0("Mail.To <- '", Mail.To, "'"),
+                      paste0("Mail.From <- '", Mail.From, "'"),
+                      sep = "\n"
+    )
+  }else{
+    stop("The SMTP.Settings argument needs to be a list. For example: \n
+         SMTP.Settings=list(host.name = 'smtp.office365.com', port = 587,
+         user.name = 'someuser@outlook.com',
+         passwd = 'password', tls = TRUE)",call. = F)
+  }
+
   writeLines(SETTINGS, fileCon)
   close(fileCon)
 
@@ -88,19 +92,11 @@ SetupWindowsTrigger <- function(path,
                     "require(MobileTrigger)",
 
                     paste0("msg<-ListModels(path ='", path, "/Models/')"),
-                    paste0("source(file = '", path, "/MailSettings.R', local = T)"),
-                    paste0("send.mail(from = Mail.From,
-                            to = Mail.To,
-                            subject = 'Model List',
-                            body = msg,
-                            smtp = list(host.name = SMTP.Server,
-                                          port = SMTP.Port,
-                                          user.name = SMTP.User,
-                                          passwd = SMTP.Password,
-                                          ssl = TRUE),
-                            authenticate = TRUE,
-                            send = TRUE,
-                            html = T)"),
+                    paste0("TriggerMSG(path='", path,
+                               "', subject = 'Model List',
+                               body = msg,
+                               html = T,
+                               authenticate = T)"),
                     sep="\n"
 
 
@@ -119,7 +115,7 @@ SetupWindowsTrigger <- function(path,
           "# Setup -------------------------------------------------------------------",
           paste0("MDLpath <- '", path, "/Models/'"),
           paste0("InputPath <- '", path, "/modelInput.txt'"),
-          paste0("source(file = '", path, "/MailSettings.R', local = T)"),
+
           "
           # Read Data and Model -----------------------------------------------------
           Input <- MailTriggerInput(InputPath=InputPath)
@@ -143,19 +139,13 @@ SetupWindowsTrigger <- function(path,
                               path = MDLpath,
                               outputData = Input$data)
 
-          # Send Message ------------------------------------------------------------
-          send.mail(from = Mail.From,
-                    to = Mail.To,
-                    subject = 'Model Result',
-                    body = msg,
-                    smtp = list(host.name = SMTP.Server,
-                                port = SMTP.Port,
-                                user.name = SMTP.User,
-                                passwd = SMTP.Password,
-                                ssl = TRUE),
-                    authenticate = TRUE,
-                    send = TRUE,
-                    html = T)", sep="\n"
+          # Send Message ------------------------------------------------------------",
+          paste0("TriggerMSG(path='", path,
+                 "', subject = 'Model Result',
+                 body = msg,
+                 html = T,
+                 authenticate = T)"),
+          sep="\n"
   )
   writeLines(SETTINGS, fileCon)
   close(fileCon)
@@ -195,19 +185,11 @@ SetupWindowsTrigger <- function(path,
                     "require(MobileTrigger)",
 
                     paste0("msg<-ListScripts(path ='", path, "/Scripts/')"),
-                    paste0("source(file = '", path, "/MailSettings.R', local = T)"),
-                    paste0("send.mail(from = Mail.From,
-                            to = Mail.To,
-                            subject = 'Script List',
-                            body = msg,
-                            smtp = list(host.name = SMTP.Server,
-                                          port = SMTP.Port,
-                                          user.name = SMTP.User,
-                                          passwd = SMTP.Password,
-                                          ssl = TRUE),
-                            authenticate = TRUE,
-                            send = TRUE,
-                            html = T)"),
+                    paste0("TriggerMSG(path='", path,
+                           "', subject = 'Script List',
+                           body = msg,
+                           html = T,
+                           authenticate = T)"),
                     sep="\n"
 
 
@@ -230,26 +212,17 @@ SetupWindowsTrigger <- function(path,
                     "tryCatch(
                       source(file = ScriptFile, local = T),
                       error=function(e){",
-                    paste0("source(file = '", path, "/MailSettings.R', local = T)"),
-                       "send.mail(from = Mail.From,
-                                  to = Mail.To,
-                                  subject = 'Run Script Error',
-                                  body = '<h2>Error Occured:</h2>
-                      <ol>
-                      <li>Your Script had an error</li>
-                      <li>No such Script ID</li>
-                      <li>or no Scipt input file</li>
-                      </ol>',
-                                  smtp = list(host.name = SMTP.Server,
-                                              port = SMTP.Port,
-                                              user.name = SMTP.User,
-                                              passwd = SMTP.Password,
-                                              ssl = TRUE),
-                                  authenticate = TRUE,
-                                  send = TRUE,
-                                  html = T)
-
-                      })",
+                    paste0("TriggerMSG(path='", path,
+                           "', subject = 'Script List Error',
+                           body = '<h2>Error Occured:</h2>
+                           <ol>
+                           <li>Your Script had an error</li>
+                           <li>No such Script ID</li>
+                           <li>or no Scipt input file</li>
+                           </ol>',
+                           html = T,
+                           authenticate = T)
+                           })"),
                     sep="\n"
   )
   writeLines(SETTINGS, fileCon)
@@ -312,18 +285,11 @@ SetupWindowsTrigger <- function(path,
 
                     paste0("msg<-ListReports(path ='", path, "/Reports/')"),
                     paste0("source(file = '", path, "/MailSettings.R', local = T)"),
-                    paste0("send.mail(from = Mail.From,
-                           to = Mail.To,
-                           subject = 'Report List',
+                    paste0("TriggerMSG(path='", path,
+                           "', subject = 'Report List',
                            body = msg,
-                           smtp = list(host.name = SMTP.Server,
-                           port = SMTP.Port,
-                           user.name = SMTP.User,
-                           passwd = SMTP.Password,
-                           ssl = TRUE),
-                           authenticate = TRUE,
-                           send = TRUE,
-                           html = T)"),
+                           html = T,
+                           authenticate = T)"),
                     sep="\n"
 
 
@@ -343,7 +309,6 @@ SetupWindowsTrigger <- function(path,
   paste0("Sys.setenv(RSTUDIO_PANDOC='", Sys.getenv("RSTUDIO_PANDOC") , "')"),
   paste0("InputPath <- '", path, "/ReportInput.txt'"),
   paste0("Attachment <- '", path, "/Reports/MobileTriggerReport.html'"),
-  paste0("source(file = '", path, "/MailSettings.R', local = T)"),
   "",
   "REPORT <- MailTriggerInput(InputPath=InputPath)",
   "SelectedReport <-",
@@ -379,23 +344,17 @@ SetupWindowsTrigger <- function(path,
   )
 
 
-  # Send Message ------------------------------------------------------------
-  send.mail(from = Mail.From,
-            to = Mail.To,
-            subject = 'Requested Report',
+  # Send Message ------------------------------------------------------------",
+  paste0("TriggerMSG(path='", path,
+         "', subject = 'Report from R',
             body = msg,
-            smtp = list(host.name = SMTP.Server,
-                        port = SMTP.Port,
-                        user.name = SMTP.User,
-                        passwd = SMTP.Password,
-                        ssl = TRUE),
-            authenticate = TRUE,
+            html = T,
             attach.files =  tryCatch(
-                             if(err.msg == 'None') Attachment else {NULL},
-                             error= function(e){NULL}
-                             ),
-            send = TRUE,
-            html = T)",  sep="\n")
+                if(err.msg == 'None') Attachment else {NULL},
+                error= function(e){NULL}
+                ),
+           authenticate = T)"),
+  sep="\n")
 
 writeLines(SETTINGS, fileCon)
 close(fileCon)
@@ -448,26 +407,21 @@ close(fileCon)
   paste0("source(file = '", path, "/MailSettings.R', local = T)"),
   "#Helper Script to Setup E-mail triggers and mail client
   require(mailR)
+  require(MobileTrigger)
 
   Subjects <- paste('Hey R -',
                     rep(c('Run', 'List'),3),
                     rep(c('Models', 'Scripts', 'Reports'),each=2)
   )
 
-  lapply(Subjects, function(x){
-    send.mail(from = Mail.From,
-              to = Mail.To,
-              subject = x,
-              body = 'MobileTrigger Starter Messages',
-              smtp = list(host.name = SMTP.Server,
-                          port = SMTP.Port,
-                          user.name = SMTP.User,
-                          passwd = SMTP.Password,
-                          ssl = TRUE),
-              authenticate = TRUE,
-              send = TRUE,
-              html = T)
-  })", sep="\n")
+  lapply(Subjects, function(x){",
+  paste0("TriggerMSG(path='", path,
+         "', subject = x,
+         body = 'MobileTrigger Starter Messages',
+         html = T,
+         authenticate = T)"),
+
+  "})", sep="\n")
   writeLines(SETTINGS, fileCon)
   close(fileCon)
 
