@@ -25,19 +25,48 @@
 #' your e-mail client is working as expected with MobileTriggers.
 #' @param TestWhat string, options: "Lists", "RunModels", "RunScripts", "RunReports"
 #' @param path string, top level folder called the [TriggerPath]
-#' @param Mail.To string, e-mail address of machine running R and mobileTriggerts
-#' @param Mail.From string, e-mail address your mail client is set to respond to.
-#' @return Sends test messages to your email client.
+#' @param Mail.To string, e-mail address that will trigger your e-mail client (e.g., Outlook or Thunderbird).
+#' @param Mail.From string, e-mail address of the mobile device. (simulation purposes)
+#' @param Mail.From.SMTP.Settings list, list of SMTP settings to send to mailR::mail.send.
+#' @return Sends test messages to your email client. The e-mail will
+#' come from the Mail.From address in your mailsetting.R file.
 #'
 #' @examples
 #'
 #' #################################
 #' # Test Triggers                 #
 #' #################################
+#'
+#' # testTriggers(
+#' # TestWhat = "Lists",
+#' ## TestWhat = "RunModels",  # Other Test Options
+#' ## TestWhat = "RunScripts", # Other Test Options
+#' ## TestWhat = "RunReports", # Other Test Options
+#' # path = path,
+#' # Mail.To = "[desktop.client@home.com]",
+#' # Mail.From =  "[your.mobile@gmail.com]",
+#' # Mail.From.SMTP.Settings =
+#' # list(host.name = "smtp.gmail.com",
+#' #      port = 587,
+#' #      user.name = "[your.mobile@gmail.com]",
+#' #      passwd = '[TVs_With_Knobs]',
+#' #      tls = TRUE)
+#' # )
+#'
 
 
-testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mail.To = NULL){
+testTriggers <- function(TestWhat = "Lists", path = NULL, Mail.To = NULL, Mail.From = NULL, Mail.From.SMTP.Settings = NULL){
+  if(any(c(is.null(Mail.To),
+           is.null(Mail.From),
+           is.null(Mail.From.SMTP.Settings)
+           )
+         )
+     ){
+     return(warning("Please define all settings for: Mail.To, Mail.From, Mail.From.SMTP.Settings"))
+     }
+
   MF <- Mail.From
+  SMTP <- Mail.From.SMTP.Settings
   MT <- Mail.To
   ###Testing Area
   # path <- "c:/trigger"
@@ -46,18 +75,9 @@ testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mai
   # TestWhat <- "RunScripts"
   # TestWhat <- "RunReports"
   ###End Testing Area
-  if(any(is.null(c(TestWhat, path, Mail.From, Mail.To)))){
-    return(warning("Arguments: path, Mail.From, and Mail.To must be provided"))
+  if(any(is.null(c(TestWhat, path, Mail.To)))){
+    return(warning("Arguments: path and Mail.To must be provided"))
   }
-
-  #initialize variables (R package Checks)
-  MailRsettings <- character()
-
-
-
-
-
-  source(paste0(path,"/MailSettings.R"), local = T)
 
   #Message Setup
   Mail.df <- data.frame(
@@ -91,7 +111,7 @@ testTriggers <- function(TestWhat = "Lists", path = NULL,  Mail.From = NULL, Mai
               to = MT,
               subject = Mail.df$Subjects[x],
               body = Mail.df$Messages[x],
-              smtp = MailRsettings,
+              smtp = SMTP,
               authenticate = TRUE,
               send = TRUE,
               html = F)

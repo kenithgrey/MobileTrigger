@@ -1,4 +1,11 @@
 Notes:
+* Observed that if the message is sent in html mode it may not process correctly.
+
+  Content-Type: text/plain --- this works great
+  Content-Type: multipart/alternative
+
+--000000000000ad41dc05875e35ae (google HTML)
+
 * In thunderbird filtaqulla does not have a default rule for saving a message to file. In order to make this work you will ned to go into the add-on options, and turn that capability on. When you are done you will need to restart thunderbird to see the effect.
 
 *thunderbird Path to filtaquilla filters:

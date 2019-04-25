@@ -4,20 +4,23 @@
 \alias{testTriggers}
 \title{Test Mobile Triggers}
 \usage{
-testTriggers(TestWhat = "Lists", path = NULL, Mail.From = NULL,
-  Mail.To = NULL)
+testTriggers(TestWhat = "Lists", path = NULL, Mail.To = NULL,
+  Mail.From = NULL, Mail.From.SMTP.Settings = NULL)
 }
 \arguments{
 \item{TestWhat}{string, options: "Lists", "RunModels", "RunScripts", "RunReports"}
 
 \item{path}{string, top level folder called the [TriggerPath]}
 
-\item{Mail.From}{string, e-mail address your mail client is set to respond to.}
+\item{Mail.To}{string, e-mail address that will trigger your e-mail client (e.g., Outlook or Thunderbird).}
 
-\item{Mail.To}{string, e-mail address of machine running R and mobileTriggerts}
+\item{Mail.From}{string, e-mail address of the mobile device. (simulation purposes)}
+
+\item{Mail.From.SMTP.Settings}{list, list of SMTP settings to send to mailR::mail.send.}
 }
 \value{
-Sends test messages to your email client.
+Sends test messages to your email client. The e-mail will
+come from the Mail.From address in your mailsetting.R file.
 }
 \description{
 Tests to make sure communication between R and
@@ -28,4 +31,21 @@ your e-mail client is working as expected with MobileTriggers.
 #################################
 # Test Triggers                 #
 #################################
+
+# testTriggers(
+# TestWhat = "Lists",
+## TestWhat = "RunModels",  # Other Test Options
+## TestWhat = "RunScripts", # Other Test Options
+## TestWhat = "RunReports", # Other Test Options
+# path = path,
+# Mail.To = "[desktop.client@home.com]",
+# Mail.From =  "[your.mobile@gmail.com]",
+# Mail.From.SMTP.Settings =
+# list(host.name = "smtp.gmail.com",
+#      port = 587,
+#      user.name = "[your.mobile@gmail.com]",
+#      passwd = '[TVs_With_Knobs]',
+#      tls = TRUE)
+# )
+
 }
