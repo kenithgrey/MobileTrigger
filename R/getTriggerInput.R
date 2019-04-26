@@ -18,10 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with MobileTrigger.  If not, see <http://www.gnu.org/licenses/>.
 
+# function to handel the html type messages from webmail providers
 .findTXTinHTML <- function(MessageIn){
   #<Tries to address HTML multipart messages>
-  MessageType.MultiPart <- which(grepl("multipart/alternative", x = MessageIn) == T)
-
+  MessageType.MultiPart <- which(grepl("boundary=", x = MessageIn) == T)
 
   theBoundry <-
     trimws(
@@ -59,9 +59,9 @@
 
 #' @export
 #' @title Get Input From a Mail Trigger Message
-#' @description Parses inputs from a message saved when e-mail client run its rules.
-#' Parser is looking for UseModel, UseScript, or UseReport follow by a number
-#' associated with Model, Script, or Report ID number. For reports and scripts
+#' @description Parses inputs from a message saved when the e-mail client run its rules.
+#' Parser is looking for UseModel, UseScript, or UseReport follow by a number (ID)
+#' associated with Model, Script, or Report. For reports and scripts
 #' there is also the option to supply comma separated data.
 #' @param InputPath string, path to a saved e-mail message from your e-mail client
 #' Likely filenames in the [TriggerPath] are modelInput.txt, ScriptInput.txt, or
@@ -76,10 +76,10 @@
 #' # Get E-mail Trigger Input      #
 #' #################################
 #'
-#' # The file is a saved e-mail message from your e-mail client
-#' MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
-#' SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
-#' RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
+#' ## The file is a saved e-mail message from your e-mail client
+#' # MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
+#' # SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
+#' # RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
 #'
 
 MailTriggerInput <- function(InputPath){

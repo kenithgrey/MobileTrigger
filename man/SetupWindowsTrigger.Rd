@@ -21,10 +21,10 @@ might be specified}
 Sets up a folder and file structure at the [TriggerPath].
 }
 \description{
-The heart of the MobileTrigger package. You specify where you
-want your tigger folder and some e-mail information and this function.
-This function builds all the scripts you need to get started. At this time,
-the function works for windows users.
+This is the heart of the MobileTrigger package. You specify where you
+want your tigger folder to be and some e-mail information and this This function
+builds all the scripts you need to get started. At this time,
+the function works ONLY for windows users.
 }
 \examples{
 

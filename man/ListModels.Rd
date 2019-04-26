@@ -20,7 +20,7 @@ only returns and HTML table with the selected model
 \description{
 Creates an HTML table for all or selected models in the
 [TRIGGER_PATH]/Models/ folder. This table is used as part of a message
-being sent out to a receiving  e-mail client.
+being sent out to a receiving e-mail client.
 }
 \examples{
 

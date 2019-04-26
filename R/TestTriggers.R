@@ -28,8 +28,7 @@
 #' @param Mail.To string, e-mail address that will trigger your e-mail client (e.g., Outlook or Thunderbird).
 #' @param Mail.From string, e-mail address of the mobile device. (simulation purposes)
 #' @param Mail.From.SMTP.Settings list, list of SMTP settings to send to mailR::mail.send.
-#' @return Sends test messages to your email client. The e-mail will
-#' come from the Mail.From address in your mailsetting.R file.
+#' @return Sends test messages to your email client.
 #'
 #' @examples
 #'
@@ -56,18 +55,6 @@
 
 
 testTriggers <- function(TestWhat = "Lists", path = NULL, Mail.To = NULL, Mail.From = NULL, Mail.From.SMTP.Settings = NULL){
-  if(any(c(is.null(Mail.To),
-           is.null(Mail.From),
-           is.null(Mail.From.SMTP.Settings)
-           )
-         )
-     ){
-     return(warning("Please define all settings for: Mail.To, Mail.From, Mail.From.SMTP.Settings"))
-     }
-
-  MF <- Mail.From
-  SMTP <- Mail.From.SMTP.Settings
-  MT <- Mail.To
   ###Testing Area
   # path <- "c:/trigger"
   # TestWhat <- "Lists"
@@ -75,6 +62,20 @@ testTriggers <- function(TestWhat = "Lists", path = NULL, Mail.To = NULL, Mail.F
   # TestWhat <- "RunScripts"
   # TestWhat <- "RunReports"
   ###End Testing Area
+
+  if(any(c(is.null(Mail.To),
+           is.null(Mail.From),
+           is.null(Mail.From.SMTP.Settings)
+          )
+        )
+    ){
+   return(warning("Please define all settings for: Mail.To, Mail.From, Mail.From.SMTP.Settings"))
+   }
+
+  MF <- Mail.From
+  SMTP <- Mail.From.SMTP.Settings
+  MT <- Mail.To
+
   if(any(is.null(c(TestWhat, path, Mail.To)))){
     return(warning("Arguments: path and Mail.To must be provided"))
   }

@@ -16,22 +16,23 @@ TriggerMSG(path, subject = NULL, body = NULL, html = F,
 
 \item{html}{boolean, use HTML or plain text.}
 
-\item{authenticate}{boolean, use authentication for SMTP signin}
+\item{authenticate}{boolean, use authentication for SMTP sign-in}
 
-\item{debug}{boolean, option to turn on mailR debuging}
+\item{debug}{boolean, option to turn on mailR debugging}
 
-\item{...}{addtional options to pass through to mailR::send.mail()}
+\item{...}{additional options to pass through to mailR::send.mail()}
 }
 \value{
 message to be sent to mobile email client.
 }
 \description{
-Function is a wrapper for mailR::send.mail() function.
+Function is a wrapper for mailR::send.mail() function. Function
+gets its mail settings from mailsettings.R file in the [TriggerPath]
 }
 \examples{
 
 ####################################################
-# Setting of MobileTriggers With ThunderBird Rules #
+# Send Message with Moble Triggers                 #
 ####################################################
 # the function internals will call your mailsettings
 # from the mailsettings.R file in your trigger root folder

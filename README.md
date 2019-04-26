@@ -29,14 +29,31 @@ Define a Trigger root path (E.g., C:)
 Run the following R script to setup the folder structure. You will need to change the quoted items to fit your situation.
 
 <pre>
-SetupWindowsTrigger(path="c:/Triggers",
+#################################
+# Setting of MobileTriggers     #
+#################################
+
+## OUTLOOK Style (uses tls = TRUE argument) ###
+SetupWindowsTrigger(path="c:/triggers",
                     Mail.To = "Your.Email@mobile.com",
-                    Mail.From = "R.Triggers@desktop.com",
-                    SMTP.Server = "smtp.server.com",
-                    SMTP.Port = 123,
-                    SMTP.User = "R.Triggers@desktop.com",
-                    SMTP.Password = "1234Password"
-)
+                    Mail.From = "someuser@outlook.com",
+                    SMTP.Settings=list(
+                    host.name = 'smtp.office365.com',
+                    port = 587,
+                    user.name = 'someuser@outlook.com',
+                    passwd = 'password', tls = TRUE)
+ )
+
+ ## Other STYLE (uses ssl = TRUE argument) ###
+ SetupWindowsTrigger(path="c:/triggers",
+                     Mail.To = "Your.Email@mobile.com",
+                     Mail.From = "R.Triggers@desktop.com",
+                     SMTP.Settings=list(
+                         host.name = 'some.smtp.sever.com',
+                         port = 587,
+                         user.name = 'R.Triggers@desktop.com',
+                         passwd = 'password', ssl = TRUE)
+ )
 </pre>
 </li>
 <li>
@@ -46,7 +63,7 @@ Locate the starterMessages.bat file in the Trigger root path. This will launch t
 Setup E-mail rules:
 <ol>
 <li>
-<b>Outlook</b> You will need to make a small windows registry adjustment to allow OUTLOOK rules to run VBA script. The VBA scripts you need are located in the OUTLOOK.txt file in the Trigger root folder. They are very simple. They either write a message to txt or run an R script in headless mode. When you have the VBA in. Connect each starter messages from step 4 with the appropriate VBA function. Click here for more detailed instructions
+<b>Outlook</b> You will need to make a small windows registry adjustment to allow OUTLOOK rules to run VBA script. The VBA scripts you need are located in the OUTLOOK.txt file in the Trigger root folder. They are very simple. They either write a message to txt or run an R script in headless mode. When you have the VBA in, Connect each starter messages from step 4 with the appropriate VBA function. Click here for more detailed instructions
 </li>
 <li>
 <b>ThunderBird</b> You will need to download the FiltaQuila plugin for ThunderBird. Once installed, adjust the FiltaQuilla settings to allow saving email messages to text files. The text files will need to be saved in the Trigger root folder. Click here for more detailed instructions.

@@ -23,7 +23,7 @@
 #' @title List Available Models
 #' @description Creates an HTML table for all or selected models in the
 #' [TRIGGER_PATH]/Models/ folder. This table is used as part of a message
-#' being sent out to a receiving  e-mail client.
+#' being sent out to a receiving e-mail client.
 #' @param path string, path to the /Models/ folder.
 #' @param SelectMDL integer, Model ID value determined from MobileTrigger::ListModels() output
 #' when SelectMDL = NULL

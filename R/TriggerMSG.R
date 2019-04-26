@@ -21,20 +21,21 @@
 
 #' @export
 #' @title Send message from mobile triggers
-#' @description Function is a wrapper for mailR::send.mail() function.
+#' @description Function is a wrapper for mailR::send.mail() function. Function
+#' gets its mail settings from mailsettings.R file in the [TriggerPath]
 #' @param path string, top level folder called the [TriggerPath]
 #' @param body string, body text of the message
 #' @param subject string, subject text of the message
 #' @param html boolean, use HTML or plain text.
-#' @param authenticate boolean, use authentication for SMTP signin
-#' @param debug boolean, option to turn on mailR debuging
-#' @param ... addtional options to pass through to mailR::send.mail()
+#' @param authenticate boolean, use authentication for SMTP sign-in
+#' @param debug boolean, option to turn on mailR debugging
+#' @param ... additional options to pass through to mailR::send.mail()
 #' @return message to be sent to mobile email client.
 #'
 #' @examples
 #'
 #' ####################################################
-#' # Setting of MobileTriggers With ThunderBird Rules #
+#' # Send Message with Moble Triggers                 #
 #' ####################################################
 #' # the function internals will call your mailsettings
 #' # from the mailsettings.R file in your trigger root folder

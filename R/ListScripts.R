@@ -23,7 +23,7 @@
 #' @title List Available Scripts
 #' @description Creates an HTML table for all or selected scripts in the
 #' [TRIGGER_PATH]/Scripts/ folder. This table is used as part of a message
-#' being sent out to a receiving  e-mail client.
+#' being sent out to a receiving e-mail client.
 #' @param path string, path to the /Scripts/ folder.
 #' @param SelectSCRIPT integer, Script ID value determined from
 #' MobileTrigger::ListScripts() output when SelectSCRIPT = NULL

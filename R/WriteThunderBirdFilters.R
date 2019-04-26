@@ -36,10 +36,11 @@
 #' # SetupWindowsTrigger(path="c:/triggers",
 #' #                     Mail.To = "Your.Email@mobile.com",
 #' #                     Mail.From = "R.Triggers@desktop.com",
-#' #                     SMTP.Server = "smtp.server.com",
-#' #                     SMTP.Port = 123,
-#' #                     SMTP.User = "R.Triggers@desktop.com",
-#' #                     SMTP.Password = "1234Password"
+#' #                     SMTP.Settings=list(
+#' #                         host.name = 'some.smtp.sever.com',
+#' #                         port = 587,
+#' #                         user.name = 'R.Triggers@desktop.com',
+#' #                         passwd = 'password', ssl = TRUE)
 #' # )
 #'
 #' # WriteThunderBirdFilters(path = "c:/triggers",

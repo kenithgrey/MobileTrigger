@@ -11,6 +11,8 @@ Template Header for Scripts
 }
 \description{
 Quick printout of an XML style header for script files.
+This information provided in the header file will be used to populate the
+data returned to the user when they request a script file list.
 }
 \examples{
 

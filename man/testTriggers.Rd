@@ -19,8 +19,7 @@ testTriggers(TestWhat = "Lists", path = NULL, Mail.To = NULL,
 \item{Mail.From.SMTP.Settings}{list, list of SMTP settings to send to mailR::mail.send.}
 }
 \value{
-Sends test messages to your email client. The e-mail will
-come from the Mail.From address in your mailsetting.R file.
+Sends test messages to your email client.
 }
 \description{
 Tests to make sure communication between R and

@@ -22,7 +22,7 @@
 
 #' @export
 #' @title HTML Summary of Model Result
-#' @description Function takes i) a seleted model from the TRIGGER_PATH]/Models/ folder
+#' @description Function takes i) a selected model from the TRIGGER_PATH]/Models/ folder
 #' and the results and makes an HTML summary for the e-mail message response.
 #' @param ID integer, Model ID value determined from MobileTrigger::ListModels() output
 #' when SelectMDL = NULL
@@ -32,7 +32,7 @@
 #' @examples
 #'
 #' ################################
-#' # creatMessage Example         #
+#' # createMessage Example         #
 #' ################################
 #'
 #' # MDLpath <- 'c:/triggers/Models/'
@@ -54,7 +54,7 @@
 #' # }
 #'
 #' # Build Message -----------------------------------------------------------
-#' # msg <- creatMessage(ID = Input$ID,
+#' # msg <- createMessage(ID = Input$ID,
 #' #                     path = MDLpath,
 #' #                     outputData = Input$data)
 
@@ -62,7 +62,7 @@
 #' ## ...
 #'
 
-creatMessage <- function(ID, path, outputData){
+createMessage <- function(ID, path, outputData){
   if(ID == 0){return("No InputFile In Path")}
   CSS_Table <- "style='border: 1px solid black; width: 75%;'"
   CSS_Cells <- "text-align:center; color: black; padding: 5px; border: 1px solid black;"

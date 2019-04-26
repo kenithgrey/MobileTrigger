@@ -21,10 +21,10 @@
 
 #' @export
 #' @title Setup MobileTrigger Folder Structure and Files
-#' @description The heart of the MobileTrigger package. You specify where you
-#' want your tigger folder and some e-mail information and this function.
-#' This function builds all the scripts you need to get started. At this time,
-#' the function works for windows users.
+#' @description This is the heart of the MobileTrigger package. You specify where you
+#' want your tigger folder to be and some e-mail information and this This function
+#' builds all the scripts you need to get started. At this time,
+#' the function works ONLY for windows users.
 #' @param path string, top level folder called the [TriggerPath]
 #' @param SMTP.Settings list, list of smtp.setting to send to mailR::mail.send.
 #' See examples below for outlook and other styles of smtp setting
@@ -148,7 +148,7 @@ SetupWindowsTrigger <- function(path,
           }
 
           # Build Message -----------------------------------------------------------
-          msg <- creatMessage(ID=Input$ID,
+          msg <- createmessage(ID=Input$ID,
                               path = MDLpath,
                               outputData = Input$data)
 

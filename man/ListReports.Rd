@@ -20,7 +20,7 @@ only returns and HTML table with the selected report.
 \description{
 Creates an HTML table for all or selected reports in the
 [TRIGGER_PATH]/Reports/ folder. This table is used as part of a message
-being sent out to a receiving  e-mail client.
+being sent out to a receiving e-mail client.
 }
 \examples{
 
