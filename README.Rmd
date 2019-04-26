@@ -24,7 +24,7 @@ The MobileTrigger package allows you to access to R Models, Scripts, and Reports
   * github: devtools::install_github("kenithgrey/MobileTrigger")
 
 ## Basic Process Flow
-Below is an overview. More extensive instructions can be found at https://r-bar.net/MobileTriggers/. 
+Below is an overview. More extensive instructions can be found at https://r-bar.net/. 
 
 <ol>
 <li>Install the Package</li>
@@ -79,5 +79,5 @@ If the rules are setup correctly when you send an e-mail from the FROM e-mail ac
 </li>
 </ol>
   
-Again, more detailed instructions can be found at https://r-bar.net/MobileTriggers/
+Again, more detailed instructions can be found at https://r-bar.net/
 

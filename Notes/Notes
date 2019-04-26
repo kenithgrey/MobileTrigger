@@ -1,4 +1,4 @@
-
+#Observed that embeded images in reports may not work on the webmail services. But seems to be fine in outlook and thunderbird.
 
 #irritations:
  # when you move the example script files around you have to change the root trigger folder manually.

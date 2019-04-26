@@ -16,7 +16,7 @@ Installation
 Basic Process Flow
 ------------------
 
-Below is an overview. More extensive instructions can be found at <https://r-bar.net/MobileTriggers/>.
+Below is an overview. More extensive instructions can be found at <https://r-bar.net/>.
 
 <ol>
 <li>
@@ -81,4 +81,4 @@ Run the available Models, Scripts, or Reports.
 </ol>
 </li>
 </ol>
-Again, more detailed instructions can be found at <https://r-bar.net/MobileTriggers/>
+Again, more detailed instructions can be found at <https://r-bar.net/>

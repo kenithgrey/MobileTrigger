@@ -148,7 +148,7 @@ SetupWindowsTrigger <- function(path,
           }
 
           # Build Message -----------------------------------------------------------
-          msg <- createmessage(ID=Input$ID,
+          msg <- createMessage(ID=Input$ID,
                               path = MDLpath,
                               outputData = Input$data)
 
