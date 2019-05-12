@@ -1,7 +1,7 @@
 Cran
  * Make Description a paragraph (Done)
- * remove the lisence file and remove the line from the decription (done)
- * fix where the functions write by defalt. Make sure the user has to specify. (done)
+ * remove the license file and remove file reference in the DESCRIPTION (done)
+ * Make sure the user has to specify where functions write to. (done)
  * Your examples are commented out. Please never do that.
 Please wrap the examples in /donttest{}. (done)
 

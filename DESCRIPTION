@@ -4,7 +4,7 @@ Title: Run Reports, Models, and Scripts from a Mobile Device
 Version: 0.0.31
 Author: Kenith Grey
 Maintainer: Kenith Grey <kenithgrey@r-bar.net>
-Description: MobileTrigger is a framework for interacting with
+Description: A framework for interacting with
   R modules such as Reports, Models, and Scripts from a mobile device. 
   The framework allows you to list available modules and select a
   module of interest using a basic e-mail interface. After 
