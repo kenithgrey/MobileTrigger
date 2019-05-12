@@ -30,39 +30,47 @@
 #' @param outputData data.frame, table with model, inputs, and outputs.
 #' @return A HTML summary for e-mail message response.
 #' @examples
-#'
+#' \donttest{
 #' ################################
-#' # createMessage Example         #
+#' # createMessage Example        #
 #' ################################
 #'
-#' # MDLpath <- 'c:/triggers/Models/'
-#' # InputPath <- 'c:/triggers/modelInput.txt'
+#' MDLpath <- 'c:/triggers/Models/'
+#' InputPath <- 'c:/triggers/modelInput.txt'
 #'
 #' # Read Data and Model -----------------------------------------------------
-#' # Input <- MailTriggerInput(InputPath=InputPath)
+#' Input <- MailTriggerInput(InputPath=InputPath)
 #'
 #' # Load Selected Model -----------------------------------------------------
-#' # MDL <- GetModel(ID = Input$ID, path = MDLpath)
+#' MDL <- GetModel(ID = Input$ID, path = MDLpath)
 #' # Predict -----------------------------------------------------------------
-#' # if(MDL == 'No Models in Path'){
-#' # }else if(!is.null(MDL[[1]]$scaled)){
-#' #  if(MDL[[1]]$scaled == T){
-#' #    Input$data$Prediction <-
-#' #    unlist(predict(MDL[[1]], Input$data)) * MDL[[1]]$outRange + MDL[[1]]$outMin}
-#' #   }else{
-#' #    Input$data$Prediction <- unlist(predict(MDL[1], Input$data))
-#' # }
+#' if(MDL == 'No Models in Path'){
+#' }else if(!is.null(MDL[[1]]$scaled)){
+#'  if(MDL[[1]]$scaled == T){
+#'    Input$data$Prediction <-
+#'    unlist(predict(MDL[[1]], Input$data)) * MDL[[1]]$outRange + MDL[[1]]$outMin}
+#'   }else{
+#'    Input$data$Prediction <- unlist(predict(MDL[1], Input$data))
+#' }
 #'
 #' # Build Message -----------------------------------------------------------
-#' # msg <- createMessage(ID = Input$ID,
-#' #                     path = MDLpath,
-#' #                     outputData = Input$data)
+#' msg <- createMessage(ID = Input$ID,
+#'                     path = MDLpath,
+#'                     outputData = Input$data)
 
-#'  # Send Message ------------------------------------------------------------
-#' ## ...
-#'
+#' # Send Message ------------------------------------------------------------
+#' # ...
+#' }
 
-createMessage <- function(ID, path, outputData){
+
+
+
+createMessage <- function(ID, path = NULL, outputData){
+ pathResult <- .pathTest(path)
+   if(pathResult[1] == FALSE){
+     stop(pathResult[2])
+   }
+
   if(ID == 0){return("No InputFile In Path")}
   CSS_Table <- "style='border: 1px solid black; width: 75%;'"
   CSS_Cells <- "text-align:center; color: black; padding: 5px; border: 1px solid black;"

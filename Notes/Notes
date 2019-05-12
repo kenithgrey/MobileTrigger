@@ -1,3 +1,12 @@
+Cran
+ * Make Description a paragraph (Done)
+ * remove the lisence file and remove the line from the decription (done)
+ * fix where the functions write by defalt. Make sure the user has to specify. (done)
+ * Your examples are commented out. Please never do that.
+Please wrap the examples in /donttest{}. (done)
+
+
+
 #Observed that embeded images in reports may not work on the webmail services. But seems to be fine in outlook and thunderbird.
 
 #irritations:

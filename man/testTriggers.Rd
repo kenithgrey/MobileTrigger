@@ -26,25 +26,25 @@ Tests to make sure communication between R and
 your e-mail client is working as expected with MobileTriggers.
 }
 \examples{
-
+\donttest{
 #################################
 # Test Triggers                 #
 #################################
 
-# testTriggers(
-# TestWhat = "Lists",
-## TestWhat = "RunModels",  # Other Test Options
-## TestWhat = "RunScripts", # Other Test Options
-## TestWhat = "RunReports", # Other Test Options
-# path = path,
-# Mail.To = "[desktop.client@home.com]",
-# Mail.From =  "[your.mobile@gmail.com]",
-# Mail.From.SMTP.Settings =
-# list(host.name = "smtp.gmail.com",
-#      port = 587,
-#      user.name = "[your.mobile@gmail.com]",
-#      passwd = '[TVs_With_Knobs]',
-#      tls = TRUE)
-# )
-
+testTriggers(
+TestWhat = "Lists",
+# TestWhat = "RunModels",  # Other Test Options
+# TestWhat = "RunScripts", # Other Test Options
+# TestWhat = "RunReports", # Other Test Options
+path = path,
+Mail.To = "[desktop.client@home.com]",
+Mail.From =  "[your.mobile@gmail.com]",
+Mail.From.SMTP.Settings =
+list(host.name = "smtp.gmail.com",
+     port = 587,
+     user.name = "[your.mobile@gmail.com]",
+     passwd = '[TVs_With_Knobs]',
+     tls = TRUE)
+)
+}
 }

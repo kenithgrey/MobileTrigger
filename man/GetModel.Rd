@@ -21,12 +21,13 @@ saved as a *.Rdata file. The Model is then applied to input data collected
 from an e-mail trigger via the MobileTrigger::MailTriggerInput() function
 }
 \examples{
-
+\donttest{
 ################################
 # Get Model                    #
 ################################
-# MODELPATH <- "C:/Triggers/Models/"
-# MDL <- GetModel(ID = 1, path = MODELPATH)
+MODELPATH <- "C:/Triggers/Models/"
+MDL <- GetModel(ID = 1, path = MODELPATH)
 ## To predict use:
 ## predict(MDL[[1]], newdata) # to get the model use the MDL[[1]]
+}
 }

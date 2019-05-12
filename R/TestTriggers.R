@@ -31,27 +31,27 @@
 #' @return Sends test messages to your email client.
 #'
 #' @examples
-#'
+#' \donttest{
 #' #################################
 #' # Test Triggers                 #
 #' #################################
 #'
-#' # testTriggers(
-#' # TestWhat = "Lists",
-#' ## TestWhat = "RunModels",  # Other Test Options
-#' ## TestWhat = "RunScripts", # Other Test Options
-#' ## TestWhat = "RunReports", # Other Test Options
-#' # path = path,
-#' # Mail.To = "[desktop.client@home.com]",
-#' # Mail.From =  "[your.mobile@gmail.com]",
-#' # Mail.From.SMTP.Settings =
-#' # list(host.name = "smtp.gmail.com",
-#' #      port = 587,
-#' #      user.name = "[your.mobile@gmail.com]",
-#' #      passwd = '[TVs_With_Knobs]',
-#' #      tls = TRUE)
-#' # )
-#'
+#' testTriggers(
+#' TestWhat = "Lists",
+#' # TestWhat = "RunModels",  # Other Test Options
+#' # TestWhat = "RunScripts", # Other Test Options
+#' # TestWhat = "RunReports", # Other Test Options
+#' path = path,
+#' Mail.To = "[desktop.client@home.com]",
+#' Mail.From =  "[your.mobile@gmail.com]",
+#' Mail.From.SMTP.Settings =
+#' list(host.name = "smtp.gmail.com",
+#'      port = 587,
+#'      user.name = "[your.mobile@gmail.com]",
+#'      passwd = '[TVs_With_Knobs]',
+#'      tls = TRUE)
+#' )
+#' }
 
 
 testTriggers <- function(TestWhat = "Lists", path = NULL, Mail.To = NULL, Mail.From = NULL, Mail.From.SMTP.Settings = NULL){
@@ -62,6 +62,11 @@ testTriggers <- function(TestWhat = "Lists", path = NULL, Mail.To = NULL, Mail.F
   # TestWhat <- "RunScripts"
   # TestWhat <- "RunReports"
   ###End Testing Area
+
+  pathResult <- .pathTest(path)
+  if(pathResult[1] == FALSE){
+    stop(pathResult[2])
+  }
 
   if(any(c(is.null(Mail.To),
            is.null(Mail.From),

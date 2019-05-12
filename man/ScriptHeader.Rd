@@ -15,6 +15,7 @@ This information provided in the header file will be used to populate the
 data returned to the user when they request a script file list.
 }
 \examples{
-
-#ScriptHeader()
+\donttest{
+ScriptHeader()
+}
 }

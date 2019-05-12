@@ -23,18 +23,18 @@ Creates an HTML table for all or selected scripts in the
 being sent out to a receiving e-mail client.
 }
 \examples{
-
+\donttest{
 #################################
 # Get all the Available Scripts #
 #################################
-# SCRIPTPATH <- "C:/Triggers/Scripts/"
-# HTML.Message <- ListScripts(path = SCRIPTPATH)
+SCRIPTPATH <- "C:/Triggers/Scripts/"
+HTML.Message <- ListScripts(path = SCRIPTPATH)
 ## Use the HTML.Message to send table of Scripts with MailR package.
 
 #############################
 # Get Selected  Script      #
 #############################
-# HTML.Message <- ListScripts(path = SCRIPTPATH, SelectSCRIPT = 1)
+HTML.Message <- ListScripts(path = SCRIPTPATH, SelectSCRIPT = 1)
 ## Use the HTML.Message to send table of Selected Script with MailR package.
-
+}
 }

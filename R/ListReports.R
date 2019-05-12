@@ -30,20 +30,20 @@
 #' folder. If SelectREPORT is a Report ID number from the complete report list it
 #' only returns and HTML table with the selected report.
 #' @examples
-#'
+#' \donttest{
 #' ################################
 #' # Get all the Available Reports #
 #' ################################
-#' # REPORTPATH <- "C:/Triggers/Reports/"
-#' # HTML.Message <- ListReports(path = REPORTPATH)
+#' REPORTPATH <- "C:/Triggers/Reports/"
+#' HTML.Message <- ListReports(path = REPORTPATH)
 #' ## Use the HTML.Message to send table of Reports with MailR package.
 #'
 #' #############################
 #' # Get Selected  Reports     #
 #' #############################
-#' # HTML.Message <- ListReports(path = REPORTPATH, SelectREPORT = 1)
+#' HTML.Message <- ListReports(path = REPORTPATH, SelectREPORT = 1)
 #' ## Use the HTML.Message to send table of Selected Script with MailR package.
-#'
+#' }
 ListReports <- function(path=NULL, SelectREPORT=NULL){
   ###Testing Area###
   #path <- "TestEnv/Reports/"

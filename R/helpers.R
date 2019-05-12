@@ -18,27 +18,19 @@
 # You should have received a copy of the GNU General Public License
 # along with MobileTrigger.  If not, see <http://www.gnu.org/licenses/>.
 
+#### Just Helper Functions
+ ## Example
+    # pathResult <- .pathTest(path)
+    # if(pathResult[1] == FALSE){
+    #  stop(pathResult[2])
+    # }
 
-#' @export
-#' @title Header Template for Script Files
-#' @description Quick printout of an XML style header for script files.
-#' This information provided in the header file will be used to populate the
-#' data returned to the user when they request a script file list.
-#' @return Template Header for Scripts
-#'
-#' @examples
-#' \donttest{
-#' ScriptHeader()
-#' }
-
-ScriptHeader <- function(){
-return(cat(
-"
-# <SCRIPT>
-# <Title> Script Title </Title>
-# <Description> Script Description </Description>
-# <Inputs> List of Inputs </Inputs>
-# </SCRIPT>
-"
-))
+.pathTest <- function(path = "", message="Please provied a path (e.g., c:/triggers)"){
+  if(is.null(path) == TRUE){
+    return(list(status=FALSE, message=message))
+  }else if (nchar(path) == 0){
+    return(list(status=FALSE, message=message))
+  }else{
+    return(TRUE)
+  }
 }

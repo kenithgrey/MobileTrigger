@@ -15,21 +15,23 @@ ReportInput.txt}
 list,
 ID, integer ID of the model, script, or report selected.
 data, data.frame of any supplied inputs.
-
-#' @examples
-
-#################################
-# Get E-mail Trigger Input      #
-#################################
-
-## The file is a saved e-mail message from your e-mail client
-# MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
-# SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
-# RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
 }
 \description{
 Parses inputs from a message saved when the e-mail client run its rules.
 Parser is looking for UseModel, UseScript, or UseReport follow by a number (ID)
 associated with Model, Script, or Report. For reports and scripts
 there is also the option to supply comma separated data.
+}
+\examples{
+
+\donttest{
+#################################
+# Get E-mail Trigger Input      #
+#################################
+
+## The file is a saved e-mail message from your e-mail client
+MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
+SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
+RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
+}
 }

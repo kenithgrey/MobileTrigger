@@ -1,12 +1,17 @@
 Package: MobileTrigger
 Type: Package
-Title: Run R Scripts from a Mobile Device
-Version: 0.0.3
+Title: Run Reports, Models, and Scripts from a Mobile Device
+Version: 0.0.31
 Author: Kenith Grey
 Maintainer: Kenith Grey <kenithgrey@r-bar.net>
-Description: Run R Models, Scripts, and Reports from a mobile device 
-    using E-mail Triggers.
-License: GPL-3 | file LICENSE
+Description: MobileTrigger is a framework for interacting with
+  R modules such as Reports, Models, and Scripts from a mobile device. 
+  The framework allows you to list available modules and select a
+  module of interest using a basic e-mail interface. After 
+  selecting a specific module, you can either run it as is or 
+  provide input via the e-mail interface. After parsing your
+  request, R will send the results back to your mobile device.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

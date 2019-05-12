@@ -4,7 +4,7 @@
 \alias{TriggerMSG}
 \title{Send message from mobile triggers}
 \usage{
-TriggerMSG(path, subject = NULL, body = NULL, html = F,
+TriggerMSG(path = NULL, subject = NULL, body = NULL, html = F,
   authenticate = T, debug = F, ...)
 }
 \arguments{
@@ -30,16 +30,17 @@ Function is a wrapper for mailR::send.mail() function. Function
 gets its mail settings from mailsettings.R file in the [TriggerPath]
 }
 \examples{
-
+\donttest{
 ####################################################
 # Send Message with Moble Triggers                 #
 ####################################################
 # the function internals will call your mailsettings
 # from the mailsettings.R file in your trigger root folder
 
-# TriggerMSG(path = 'c:/triggers',
-#           body = "hello world",
-#           subject = "Script List",
-#           html = F, authenticate = T
-# )
+TriggerMSG(path = 'c:/triggers',
+           body = "hello world",
+           subject = "Script List",
+           html = F, authenticate = T
+ )
+ }
 }

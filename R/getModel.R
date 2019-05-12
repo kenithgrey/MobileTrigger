@@ -28,16 +28,23 @@
 #' @param path string, path to the /Models/ folder.
 #' @return A model into the environment
 #' @examples
-#'
+#' \donttest{
 #' ################################
 #' # Get Model                    #
 #' ################################
-#' # MODELPATH <- "C:/Triggers/Models/"
-#' # MDL <- GetModel(ID = 1, path = MODELPATH)
+#' MODELPATH <- "C:/Triggers/Models/"
+#' MDL <- GetModel(ID = 1, path = MODELPATH)
 #' ## To predict use:
 #' ## predict(MDL[[1]], newdata) # to get the model use the MDL[[1]]
+#' }
 
 GetModel <- function(ID=NULL, path = NULL){
+
+  pathResult <- .pathTest(path)
+  if(pathResult[1] == FALSE){
+    stop(pathResult[2])
+  }
+
   if(is.null(path)){return(warning("Specify Path to Model Folder"))}
   if(is.null(ID)){return(warning("Specify model ID from ModelList()"))}
   MDLS <-

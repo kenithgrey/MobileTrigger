@@ -23,18 +23,18 @@ Creates an HTML table for all or selected reports in the
 being sent out to a receiving e-mail client.
 }
 \examples{
-
+\donttest{
 ################################
 # Get all the Available Reports #
 ################################
-# REPORTPATH <- "C:/Triggers/Reports/"
-# HTML.Message <- ListReports(path = REPORTPATH)
+REPORTPATH <- "C:/Triggers/Reports/"
+HTML.Message <- ListReports(path = REPORTPATH)
 ## Use the HTML.Message to send table of Reports with MailR package.
 
 #############################
 # Get Selected  Reports     #
 #############################
-# HTML.Message <- ListReports(path = REPORTPATH, SelectREPORT = 1)
+HTML.Message <- ListReports(path = REPORTPATH, SelectREPORT = 1)
 ## Use the HTML.Message to send table of Selected Script with MailR package.
-
+}
 }

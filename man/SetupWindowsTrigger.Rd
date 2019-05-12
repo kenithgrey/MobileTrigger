@@ -4,7 +4,7 @@
 \alias{SetupWindowsTrigger}
 \title{Setup MobileTrigger Folder Structure and Files}
 \usage{
-SetupWindowsTrigger(path, SMTP.Settings, Mail.To, Mail.From)
+SetupWindowsTrigger(path = NULL, SMTP.Settings, Mail.To, Mail.From)
 }
 \arguments{
 \item{path}{string, top level folder called the [TriggerPath]}
@@ -27,30 +27,31 @@ builds all the scripts you need to get started. At this time,
 the function works ONLY for windows users.
 }
 \examples{
-
+\donttest{
 #################################
 # Setting of MobileTriggers     #
-
+#################################
 
 ## OUTLOOK Style (uses tls = TRUE argument) ###
-# SetupWindowsTrigger(path="c:/triggers",
-#                     Mail.To = "Your.Email@mobile.com",
-#                     Mail.From = "someuser@outlook.com",
-#                     SMTP.Settings=list(
-#                         host.name = 'smtp.office365.com',
-#                         port = 587,
-#                         user.name = 'someuser@outlook.com',
-#                         passwd = 'password', tls = TRUE)
-# )
+SetupWindowsTrigger(path="c:/triggers",
+                    Mail.To = "Your.Email@mobile.com",
+                    Mail.From = "someuser@outlook.com",
+                    SMTP.Settings=list(
+                        host.name = 'smtp.office365.com',
+                        port = 587,
+                        user.name = 'someuser@outlook.com',
+                        passwd = 'password', tls = TRUE)
+)
 
 ## Other STYLE (uses ssl = TRUE argument) ###
-# SetupWindowsTrigger(path="c:/triggers",
-#                     Mail.To = "Your.Email@mobile.com",
-#                     Mail.From = "R.Triggers@desktop.com",
-#                     SMTP.Settings=list(
-#                         host.name = 'some.smtp.sever.com',
-#                         port = 587,
-#                         user.name = 'R.Triggers@desktop.com',
-#                         passwd = 'password', ssl = TRUE)
-# )
+SetupWindowsTrigger(path="c:/triggers",
+                    Mail.To = "Your.Email@mobile.com",
+                    Mail.From = "R.Triggers@desktop.com",
+                    SMTP.Settings=list(
+                        host.name = 'some.smtp.sever.com',
+                        port = 587,
+                        user.name = 'R.Triggers@desktop.com',
+                        passwd = 'password', ssl = TRUE)
+)
+}
 }

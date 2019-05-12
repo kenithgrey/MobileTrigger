@@ -20,20 +20,21 @@ Function sets up the 6 rules you need to list and run the
 Models, Scripts, and Reports
 }
 \examples{
-
+\donttest{
 ####################################################
 # Setting of MobileTriggers With ThunderBird Rules #
 ####################################################
-# SetupWindowsTrigger(path="c:/triggers",
-#                     Mail.To = "Your.Email@mobile.com",
-#                     Mail.From = "R.Triggers@desktop.com",
-#                     SMTP.Settings=list(
-#                         host.name = 'some.smtp.sever.com',
-#                         port = 587,
-#                         user.name = 'R.Triggers@desktop.com',
-#                         passwd = 'password', ssl = TRUE)
-# )
+SetupWindowsTrigger(path="c:/triggers",
+                    Mail.To = "Your.Email@mobile.com",
+                    Mail.From = "R.Triggers@desktop.com",
+                    SMTP.Settings=list(
+                        host.name = 'some.smtp.sever.com',
+                        port = 587,
+                        user.name = 'R.Triggers@desktop.com',
+                        passwd = 'password', ssl = TRUE)
+)
 
-# WriteThunderBirdFilters(path = "c:/triggers",
-#                         sent.from = "your.email@Mobile.net")
+WriteThunderBirdFilters(path = "c:/triggers",
+                        sent.from = "your.email@Mobile.net")
+}
 }

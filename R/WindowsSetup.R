@@ -34,39 +34,44 @@
 #' @return Sets up a folder and file structure at the [TriggerPath].
 #'
 #' @examples
-#'
+#' \donttest{
 #' #################################
 #' # Setting of MobileTriggers     #
-#'
+#' #################################
 #'
 #' ## OUTLOOK Style (uses tls = TRUE argument) ###
-#' # SetupWindowsTrigger(path="c:/triggers",
-#' #                     Mail.To = "Your.Email@mobile.com",
-#' #                     Mail.From = "someuser@outlook.com",
-#' #                     SMTP.Settings=list(
-#' #                         host.name = 'smtp.office365.com',
-#' #                         port = 587,
-#' #                         user.name = 'someuser@outlook.com',
-#' #                         passwd = 'password', tls = TRUE)
-#' # )
+#' SetupWindowsTrigger(path="c:/triggers",
+#'                     Mail.To = "Your.Email@mobile.com",
+#'                     Mail.From = "someuser@outlook.com",
+#'                     SMTP.Settings=list(
+#'                         host.name = 'smtp.office365.com',
+#'                         port = 587,
+#'                         user.name = 'someuser@outlook.com',
+#'                         passwd = 'password', tls = TRUE)
+#' )
 #'
 #' ## Other STYLE (uses ssl = TRUE argument) ###
-#' # SetupWindowsTrigger(path="c:/triggers",
-#' #                     Mail.To = "Your.Email@mobile.com",
-#' #                     Mail.From = "R.Triggers@desktop.com",
-#' #                     SMTP.Settings=list(
-#' #                         host.name = 'some.smtp.sever.com',
-#' #                         port = 587,
-#' #                         user.name = 'R.Triggers@desktop.com',
-#' #                         passwd = 'password', ssl = TRUE)
-#' # )
+#' SetupWindowsTrigger(path="c:/triggers",
+#'                     Mail.To = "Your.Email@mobile.com",
+#'                     Mail.From = "R.Triggers@desktop.com",
+#'                     SMTP.Settings=list(
+#'                         host.name = 'some.smtp.sever.com',
+#'                         port = 587,
+#'                         user.name = 'R.Triggers@desktop.com',
+#'                         passwd = 'password', ssl = TRUE)
+#' )
+#' }
 
 
 # Setup Windows Triggers Folder ---------------------------------------------------
-SetupWindowsTrigger <- function(path,
+SetupWindowsTrigger <- function(path = NULL,
                                 SMTP.Settings,
                                 Mail.To,
                                 Mail.From){
+  pathResult <- .pathTest(path)
+  if(pathResult[1] == FALSE){
+    stop(pathResult[2])
+  }
 
 # Create Root --------------------------------------------------------------
   dir.create(path)

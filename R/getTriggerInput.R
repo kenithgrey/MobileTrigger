@@ -70,20 +70,25 @@
 #' ID, integer ID of the model, script, or report selected.
 #' data, data.frame of any supplied inputs.
 #'
-#' #' @examples
+#' @examples
 #'
+#' \donttest{
 #' #################################
 #' # Get E-mail Trigger Input      #
 #' #################################
 #'
 #' ## The file is a saved e-mail message from your e-mail client
-#' # MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
-#' # SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
-#' # RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
-#'
+#' MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
+#' SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
+#' RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
+#' }
 
 MailTriggerInput <- function(InputPath){
 
+  pathResult <- .pathTest(InputPath, "Please provide a path (e.g., c:/triggers/modelInput.txt)")
+  if(pathResult[1] == FALSE){
+    stop(pathResult[2])
+  }
   #Testing Area
     #InputPath="c:/triggers/modelInput.txt"
   #End Testing area
