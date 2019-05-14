@@ -35,31 +35,28 @@
 #' # createMessage Example        #
 #' ################################
 #'
-#' MDLpath <- 'c:/triggers/Models/'
-#' InputPath <- 'c:/triggers/modelInput.txt'
+#'   MDLpath <- 'c:/triggers/Models/'
+#'   InputPath <- 'c:/triggers/modelInput.txt'
 #'
 #' # Read Data and Model -----------------------------------------------------
-#' Input <- MailTriggerInput(InputPath=InputPath)
+#'   Input <- MailTriggerInput(InputPath=InputPath)
 #'
 #' # Load Selected Model -----------------------------------------------------
-#' MDL <- GetModel(ID = Input$ID, path = MDLpath)
+#'   MDL <- GetModel(ID = Input$ID, path = MDLpath)
 #' # Predict -----------------------------------------------------------------
-#' if(MDL == 'No Models in Path'){
-#' }else if(!is.null(MDL[[1]]$scaled)){
-#'  if(MDL[[1]]$scaled == T){
-#'    Input$data$Prediction <-
-#'    unlist(predict(MDL[[1]], Input$data)) * MDL[[1]]$outRange + MDL[[1]]$outMin}
-#'   }else{
-#'    Input$data$Prediction <- unlist(predict(MDL[1], Input$data))
-#' }
+#'   if(MDL == 'No Models in Path'){
+#'   }else if(!is.null(MDL[[1]]$scaled)){
+#'    if(MDL[[1]]$scaled == T){
+#'      Input$data$Prediction <-
+#'      unlist(predict(MDL[[1]], Input$data)) * MDL[[1]]$outRange + MDL[[1]]$outMin}
+#'    }else{
+#'      Input$data$Prediction <- unlist(predict(MDL[1], Input$data))
+#'   }
 #'
 #' # Build Message -----------------------------------------------------------
-#' msg <- createMessage(ID = Input$ID,
-#'                     path = MDLpath,
-#'                     outputData = Input$data)
-
-#' # Send Message ------------------------------------------------------------
-#' # ...
+#'   msg <- createMessage(ID = Input$ID,
+#'                        path = MDLpath,
+#'                        outputData = Input$data)
 #' }
 
 

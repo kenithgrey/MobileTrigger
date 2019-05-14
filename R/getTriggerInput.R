@@ -78,9 +78,9 @@
 #' #################################
 #'
 #' ## The file is a saved e-mail message from your e-mail client
-#' MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
-#' SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
-#' RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
+#'   MDL_Input <- MailTriggerInput(InputPath="c:/triggers/modelInput.txt")
+#'   SCRPT_Input <- MailTriggerInput(InputPath="c:/triggers/ScriptInput.txt")
+#'   RPT_Input <- MailTriggerInput(InputPath="c:/triggers/ReportInput.txt")
 #' }
 
 MailTriggerInput <- function(InputPath){

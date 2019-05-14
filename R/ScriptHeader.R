@@ -28,6 +28,9 @@
 #'
 #' @examples
 #' \donttest{
+#' ###################################
+#' # Generate Template Script Header #
+#' ###################################
 #' ScriptHeader()
 #' }
 

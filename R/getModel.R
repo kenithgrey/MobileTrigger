@@ -32,10 +32,10 @@
 #' ################################
 #' # Get Model                    #
 #' ################################
-#' MODELPATH <- "C:/Triggers/Models/"
-#' MDL <- GetModel(ID = 1, path = MODELPATH)
+#'   MODELPATH <- "C:/Triggers/Models/"
+#'   MDL <- GetModel(ID = 1, path = MODELPATH)
 #' ## To predict use:
-#' ## predict(MDL[[1]], newdata) # to get the model use the MDL[[1]]
+#'   predict(MDL[[1]], newdata) # to get the model use the MDL[[1]]
 #' }
 
 GetModel <- function(ID=NULL, path = NULL){

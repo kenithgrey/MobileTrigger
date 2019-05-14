@@ -1,4 +1,8 @@
-## Resubmission
+## Resubmission 2
+
+ * Fixxed commented code line in GetModel.Rd. Rechecked other functions. 
+
+## Resubmission 1
 This is a resubmission. In this version I have:
 
  * Made the Description a paragraph in the DESCRIPTION file.

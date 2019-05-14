@@ -40,11 +40,11 @@
 #' # the function internals will call your mailsettings
 #' # from the mailsettings.R file in your trigger root folder
 #'
-#' TriggerMSG(path = 'c:/triggers',
-#'            body = "hello world",
-#'            subject = "Script List",
-#'            html = F, authenticate = T
-#'  )
+#'   TriggerMSG(path = 'c:/triggers',
+#'              body = "hello world",
+#'              subject = "Script List",
+#'              html = F, authenticate = T
+#'   )
 #'  }
 
 

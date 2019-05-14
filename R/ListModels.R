@@ -35,15 +35,15 @@
 #' ################################
 #' # Get all the Available Models #
 #' ################################
-#' MODELPATH <- "C:/Triggers/Models/"
-#' HTML.Message <- ListModels(path = MODELPATH)
-#' # Use the HTML.Message to send table of Models with MailR package.
+#'   MODELPATH <- "C:/Triggers/Models/"
+#'   HTML.Message <- ListModels(path = MODELPATH)
+#'   ## Use the HTML.Message to send table of Models with MailR package.
 #'
 #' #############################
-#' # Get Selected  Model       #
+#' # Get Selected Model        #
 #' #############################
-#' HTML.Message <- ListModels(path = MODELPATH, SelectMDL = 1)
-#' # Use the HTML.Message to send table of Selected Model with MailR package.
+#'   HTML.Message <- ListModels(path = MODELPATH, SelectMDL = 1)
+#'   ## Use the HTML.Message to send table of Selected Model with MailR package.
 #' }
 
 ListModels <- function(path = NULL, SelectMDL=NULL){

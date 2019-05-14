@@ -35,15 +35,15 @@
 #' #################################
 #' # Get all the Available Scripts #
 #' #################################
-#' SCRIPTPATH <- "C:/Triggers/Scripts/"
-#' HTML.Message <- ListScripts(path = SCRIPTPATH)
-#' ## Use the HTML.Message to send table of Scripts with MailR package.
+#'   SCRIPTPATH <- "C:/Triggers/Scripts/"
+#'   HTML.Message <- ListScripts(path = SCRIPTPATH)
+#'   ## Use the HTML.Message to send table of Scripts with MailR package.
 #'
 #' #############################
 #' # Get Selected  Script      #
 #' #############################
-#' HTML.Message <- ListScripts(path = SCRIPTPATH, SelectSCRIPT = 1)
-#' ## Use the HTML.Message to send table of Selected Script with MailR package.
+#'   HTML.Message <- ListScripts(path = SCRIPTPATH, SelectSCRIPT = 1)
+#'   ## Use the HTML.Message to send table of Selected Script with MailR package.
 #' }
 ListScripts <- function(path = NULL, SelectSCRIPT=NULL){
 ###Testing Area###

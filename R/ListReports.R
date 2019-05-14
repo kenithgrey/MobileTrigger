@@ -34,15 +34,15 @@
 #' ################################
 #' # Get all the Available Reports #
 #' ################################
-#' REPORTPATH <- "C:/Triggers/Reports/"
-#' HTML.Message <- ListReports(path = REPORTPATH)
-#' ## Use the HTML.Message to send table of Reports with MailR package.
+#'   REPORTPATH <- "C:/Triggers/Reports/"
+#'   HTML.Message <- ListReports(path = REPORTPATH)
+#'   ## Use the HTML.Message to send table of Reports with MailR package.
 #'
 #' #############################
 #' # Get Selected  Reports     #
 #' #############################
-#' HTML.Message <- ListReports(path = REPORTPATH, SelectREPORT = 1)
-#' ## Use the HTML.Message to send table of Selected Script with MailR package.
+#'   HTML.Message <- ListReports(path = REPORTPATH, SelectREPORT = 1)
+#'   ## Use the HTML.Message to send table of Selected Script with MailR package.
 #' }
 ListReports <- function(path=NULL, SelectREPORT=NULL){
   ###Testing Area###
